@@ -13,6 +13,7 @@ public class WebSocketH5Config implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry webSocketHandlerRegistry) {
         //handler是webSocket的核心，配置入口
-        webSocketHandlerRegistry.addHandler(new MyWebSocketHandler(), "/websocket/{ID}").setAllowedOrigins("*").addInterceptors(new CustomSessionAuthHandshakeInterceptor());
+        // webSocketHandlerRegistry.addHandler(new MyWebSocketHandler(), "/testWebSocket/{username}").setAllowedOrigins("*").addInterceptors(new CustomSessionAuthHandshakeInterceptor());
+        webSocketHandlerRegistry.addHandler(new MyWebSocketHandler(), "/testWebSocket").setAllowedOrigins("*").addInterceptors(new CustomSessionAuthHandshakeInterceptor());
     }
 }

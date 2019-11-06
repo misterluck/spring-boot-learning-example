@@ -8,5 +8,6 @@ public class SBExaApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SBExaApplication.class, args);
+        System.setProperty("tomcat.util.http.parser.HttpParser.requestTargetAllow","|");
     }
 }

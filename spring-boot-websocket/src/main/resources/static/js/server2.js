@@ -4,9 +4,9 @@ function connect() {
     var username = $('#username').val();
     if (username != null && username != "") {
         if ('WebSocket' in window) {
-            websocket = new WebSocket("ws://127.0.0.1:8097/websocket/ID="+$("#username").val());
+            websocket = new WebSocket("ws://127.0.0.1:8097/testWebSocket?username="+$("#username").val());
         }else if('MozWebSocket' in window) {
-            websocket = new MozWebSocket("ws://127.0.0.1:8097/websocket/ID="+$("#username").val());
+            websocket = new MozWebSocket("ws://127.0.0.1:8097/testWebSocket?username="+$("#username").val());
         }else {
             alert("该浏览器不支持websocket");
         }
