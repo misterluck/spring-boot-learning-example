@@ -1,7 +1,7 @@
 package org.example.antdvue.controller;
 
 import org.example.antdvue.entity.LoginAccount;
-import org.example.antdvue.entity.Response;
+import org.example.antdvue.entity.Result;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +13,7 @@ public class AccountController {
 
     @RequestMapping(value = "/sms")
     public ResponseEntity smsCaptcha(@RequestBody LoginAccount loginAccount) {
-        Response<LoginAccount> response = new Response<>();
+        Result<LoginAccount> response = new Result<>();
 
         System.out.println(loginAccount.getMobile());
         LoginAccount data = new LoginAccount();

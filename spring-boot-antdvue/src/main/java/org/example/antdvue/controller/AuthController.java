@@ -1,9 +1,9 @@
 package org.example.antdvue.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import org.example.antdvue.constant.Constant;
+import org.example.antdvue.constant.AuthConstant;
 import org.example.antdvue.entity.LoginAccount;
-import org.example.antdvue.entity.Response;
+import org.example.antdvue.entity.Result;
 import org.example.antdvue.entity.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class AuthController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity login(HttpServletRequest request, @RequestBody LoginAccount loginAccount) {
-        Response<User> response = new Response<>();
+        Result<User> response = new Result<>();
         String token = "4291d7da9005377ec9aec4a71ea837f";
 
         User otherUser = new User();
@@ -120,7 +120,7 @@ public class AuthController {
 
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public ResponseEntity logout(HttpServletRequest request, @RequestBody String token) {
-        String headerToken = request.getHeader(Constant.ACCESS_TOKEN);
+        String headerToken = request.getHeader(AuthConstant.ACCESS_TOKEN);
         System.out.println("logout token = " + headerToken);
 
         System.out.println("token = " + token);
@@ -129,7 +129,7 @@ public class AuthController {
         // System.out.println("username = "+otherUser.getUsername()+" name = "+otherUser.getName());
         session.removeAttribute(token);
 
-        Response<String> response = new Response<>();
+        Result<String> response = new Result<>();
         response.setTimestamp(System.currentTimeMillis());
         response.setCode("0");
         response.setMessage("[测试接口] 注销成功");
@@ -143,7 +143,7 @@ public class AuthController {
         JSONObject data = new JSONObject();
         data.put("stepCode", false);
 
-        Response<JSONObject> response = new Response<>();
+        Result<JSONObject> response = new Result<>();
         response.setTimestamp(System.currentTimeMillis());
         response.setCode("0");
         response.setMessage("");

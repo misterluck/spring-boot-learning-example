@@ -1,6 +1,6 @@
 package org.example.antdvue.controller;
 
-import org.example.antdvue.constant.Constant;
+import org.example.antdvue.constant.AuthConstant;
 import org.example.antdvue.entity.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +17,7 @@ public class UserController {
 
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public ResponseEntity info(HttpServletRequest request) {
-        String token = request.getHeader(Constant.ACCESS_TOKEN);
+        String token = request.getHeader(AuthConstant.ACCESS_TOKEN);
         System.out.println("info token = " + token);
 
         HttpSession session = request.getSession();
