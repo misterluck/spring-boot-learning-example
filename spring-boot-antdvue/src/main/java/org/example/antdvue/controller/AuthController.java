@@ -1,23 +1,30 @@
 package org.example.antdvue.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import org.example.antdvue.constant.Constant;
+import org.example.antdvue.entity.LoginAccount;
 import org.example.antdvue.entity.Response;
 import org.example.antdvue.entity.User;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(value = "/api/auth")
+@RequestMapping(value = "/auth")
 public class AuthController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Response<User> login(@RequestBody User user) {
+    public ResponseEntity login(HttpServletRequest request, @RequestBody LoginAccount loginAccount) {
         Response<User> response = new Response<>();
-
-        System.out.println("username = " + user.getUsername() + " password = " + user.getPassword());
+        String token = "4291d7da9005377ec9aec4a71ea837f";
 
         User otherUser = new User();
         otherUser.setId(UUID.randomUUID().toString());
@@ -34,21 +41,116 @@ public class AuthController {
         otherUser.setDeleted("0");
         otherUser.setRoleId("admin");
         otherUser.setLang("zh-CN");
-        otherUser.setToken("4291d7da9005377ec9aec4a71ea837f");
+        otherUser.setToken(token);
+
+        String username = "admin";
+        String password = "21232f297a57a5a743894a0e4a801fc3";
+        String email = "username@example.com";
+        String mobile = "15600009999";
+        String captcha = "354672";
+
+        if (!StringUtils.isEmpty(loginAccount.getUsername())) { // 用户名密码登录
+            if (username.equals(loginAccount.getUsername()) && password.equals(loginAccount.getPassword())) {
+
+                HttpSession session = request.getSession();
+                session.setAttribute(token, otherUser);
+
+                response.setTimestamp(System.currentTimeMillis());
+                response.setCode("200");
+                response.setMessage("");
+                response.setResult(otherUser);
+                return ResponseEntity.status(HttpStatus.OK).body(response);
+            }else {
+                otherUser.setLogin(true);
+                response.setTimestamp(System.currentTimeMillis());
+                response.setCode("401");
+                response.setMessage("账户或密码错误");
+                response.setResult(otherUser);
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+            }
+        }else if (!StringUtils.isEmpty(loginAccount.getEmail())) { // 邮箱密码登录
+            if (email.equals(loginAccount.getEmail()) && password.equals(loginAccount.getPassword())) {
+
+                HttpSession session = request.getSession();
+                session.setAttribute(token, otherUser);
+
+                response.setTimestamp(System.currentTimeMillis());
+                response.setCode("200");
+                response.setMessage("");
+                response.setResult(otherUser);
+                return ResponseEntity.status(HttpStatus.OK).body(response);
+            }else {
+                otherUser.setLogin(true);
+                response.setTimestamp(System.currentTimeMillis());
+                response.setCode("401");
+                response.setMessage("账户或密码错误");
+                response.setResult(otherUser);
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+            }
+        }else if (!StringUtils.isEmpty(loginAccount.getMobile())) { // 手机号验证码登录
+            System.out.println(loginAccount.toString());
+            if (mobile.equals(loginAccount.getMobile()) && captcha.equals(loginAccount.getCaptcha())) {
+                HttpSession session = request.getSession();
+                session.setAttribute(token, otherUser);
+
+                response.setTimestamp(System.currentTimeMillis());
+                response.setCode("200");
+                response.setMessage("");
+                response.setResult(otherUser);
+                return ResponseEntity.status(HttpStatus.OK).body(response);
+            }else {
+                otherUser.setLogin(true);
+                response.setTimestamp(System.currentTimeMillis());
+                response.setCode("401");
+                response.setMessage("验证码错误");
+                response.setResult(otherUser);
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+            }
+        }else {
+            otherUser.setLogin(true);
+            response.setTimestamp(System.currentTimeMillis());
+            response.setCode("401");
+            response.setMessage("请输入正确的用户名密码");
+            response.setResult(otherUser);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
 
 
-        response.setTimestamp(System.currentTimeMillis());
-        response.setCode("200");
-        response.setMessage("");
-        response.setResult(otherUser);
-
-        return response;
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    public String logout(String username, String password) {
-        System.out.println("username = " + username + "password = " + password);
-        return "";
+    public ResponseEntity logout(HttpServletRequest request, @RequestBody String token) {
+        String headerToken = request.getHeader(Constant.ACCESS_TOKEN);
+        System.out.println("logout token = " + headerToken);
+
+        System.out.println("token = " + token);
+        HttpSession session = request.getSession();
+        User otherUser = (User) session.getAttribute(token);
+        // System.out.println("username = "+otherUser.getUsername()+" name = "+otherUser.getName());
+        session.removeAttribute(token);
+
+        Response<String> response = new Response<>();
+        response.setTimestamp(System.currentTimeMillis());
+        response.setCode("0");
+        response.setMessage("[测试接口] 注销成功");
+        response.setResult("");
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+
+    @RequestMapping(value = "/2step-code", method = RequestMethod.POST)
+    public ResponseEntity twofactor(@RequestBody String body) {
+
+        JSONObject data = new JSONObject();
+        data.put("stepCode", false);
+
+        Response<JSONObject> response = new Response<>();
+        response.setTimestamp(System.currentTimeMillis());
+        response.setCode("0");
+        response.setMessage("");
+        response.setResult(data);
+
+        return ResponseEntity.ok(response);
+    }
+
 
 }

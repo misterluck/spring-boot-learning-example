@@ -3,12 +3,13 @@ package org.example.sbela.bean;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 @Document(indexName = "book", type = "_doc")
 public class Book {
     @Id
     private String id;
-    @Field
+    @Field(type = FieldType.Keyword)
     private String title;
     private String author;
     private String postDate;

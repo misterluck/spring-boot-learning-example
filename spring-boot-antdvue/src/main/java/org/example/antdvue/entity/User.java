@@ -16,6 +16,7 @@ public class User {
     private String roleId;
     private String lang;
     private String token;
+    private boolean login;
 
     public String getId() {
         return id;
@@ -135,5 +136,13 @@ public class User {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public boolean isLogin() {
+        return login;
+    }
+
+    public void setLogin(boolean login) {
+        this.login = login;
     }
 }
