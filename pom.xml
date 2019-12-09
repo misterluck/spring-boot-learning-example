@@ -13,13 +13,28 @@
         <module>spring-boot-example</module>
         <module>spring-boot-websocket</module>
         <module>spring-boot-antdvue</module>
+        <module>spring-boot-antdcommon</module>
     </modules>
+
+    <distributionManagement>
+        <repository>
+            <id>jeecg</id>
+            <name>jeecg Repository</name>
+            <url>http://maven.jeecg.com:8090/nexus/content/repositories/jeecg</url>
+        </repository>
+        <snapshotRepository>
+            <id>jeecg-snapshots</id>
+            <name>jeecg Snapshot Repository</name>
+            <url>http://maven.jeecg.com:8090/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <properties>
         <springboot.version>2.0.5.RELEASE</springboot.version>
         <mybatis.generator.version>1.3.5</mybatis.generator.version>
         <mybatis.springboot.version>1.3.2</mybatis.springboot.version>
-        <druid.version>1.1.10</druid.version>
+        <mybatis-plus.version>3.1.2</mybatis-plus.version>
+        <druid.version>1.1.17</druid.version>
         <fastjson.version>1.2.24</fastjson.version>
     </properties>
 
@@ -31,23 +46,31 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- MyBatis Start -->
-            <dependency>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-core</artifactId>
-                <version>${mybatis.generator.version}</version>
-            </dependency>
+            <!-- MyBatis -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis.springboot.version}</version>
             </dependency>
+            <!-- MyBatis-Generator -->
+            <dependency>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-core</artifactId>
+                <version>${mybatis.generator.version}</version>
+            </dependency>
+            <!-- Mybatis-Plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <!-- Druid -->
             <dependency>
                 <groupId>com.alibaba</groupId>
-                <artifactId>druid</artifactId>
+                <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
             </dependency>
-            <!-- MyBatis Stop -->
+            <!-- FastJson -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>

@@ -1,4 +1,4 @@
-package org.example.antdvue.constant;
+package org.example.common.constant;
 
 public class CodeConstant {
 
