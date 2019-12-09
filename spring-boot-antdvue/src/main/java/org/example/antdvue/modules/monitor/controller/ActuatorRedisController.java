@@ -1,9 +1,9 @@
 package org.example.antdvue.modules.monitor.controller;
 
-import org.example.antdvue.entity.Result;
 import org.example.antdvue.modules.monitor.domain.RedisInfo;
-import org.example.antdvue.constant.CodeConstant;
 import org.example.antdvue.modules.monitor.service.RedisService;
+import org.example.common.api.vo.Result;
+import org.example.common.constant.CodeConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

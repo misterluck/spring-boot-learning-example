@@ -1,9 +1,10 @@
 package org.example.antdvue.modules.monitor.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.example.antdvue.modules.monitor.domain.RedisInfo;
 import org.example.antdvue.modules.monitor.exception.RedisConnectException;
 import org.example.antdvue.modules.monitor.service.RedisService;
-import org.example.common.util.ConvertUtils;
+import org.example.common.util.oConvertUtils;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ import java.util.*;
  * @Author MrBird
  */
 @Service("redisService")
-// @Slf4j
+@Slf4j
 public class RedisServiceImpl implements RedisService {
 
 	@Resource
@@ -32,8 +33,8 @@ public class RedisServiceImpl implements RedisService {
 		RedisInfo redisInfo = null;
 		for (Map.Entry<Object, Object> entry : info.entrySet()) {
 			redisInfo = new RedisInfo();
-			redisInfo.setKey(ConvertUtils.getString(entry.getKey()));
-			redisInfo.setValue(ConvertUtils.getString(entry.getValue()));
+			redisInfo.setKey(oConvertUtils.getString(entry.getKey()));
+			redisInfo.setValue(oConvertUtils.getString(entry.getValue()));
 			infoList.add(redisInfo);
 		}
 		return infoList;
@@ -55,7 +56,7 @@ public class RedisServiceImpl implements RedisService {
 		Map<String, Object> map = null;
 		Properties info = redisConnectionFactory.getConnection().info();
 		for (Map.Entry<Object, Object> entry : info.entrySet()) {
-			String key = ConvertUtils.getString(entry.getKey());
+			String key = oConvertUtils.getString(entry.getKey());
 			if ("used_memory".equals(key)) {
 				map = new HashMap<>();
 				map.put("used_memory", entry.getValue());

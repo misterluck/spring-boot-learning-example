@@ -1,7 +1,7 @@
 package org.example.antdvue.controller;
 
 import org.example.antdvue.entity.LoginAccount;
-import org.example.antdvue.entity.Result;
+import org.example.common.api.vo.Result;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
