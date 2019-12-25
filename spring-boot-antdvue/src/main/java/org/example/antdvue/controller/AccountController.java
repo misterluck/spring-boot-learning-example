@@ -20,7 +20,7 @@ public class AccountController {
         data.setCaptcha("354672");
 
         response.setTimestamp(System.currentTimeMillis());
-        response.setCode("0");
+        response.setCode(0);
         response.setMessage("");
         response.setResult(data);
         return ResponseEntity.ok(response);

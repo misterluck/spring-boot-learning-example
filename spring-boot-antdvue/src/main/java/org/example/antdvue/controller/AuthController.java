@@ -56,14 +56,14 @@ public class AuthController {
                 session.setAttribute(token, otherUser);
 
                 response.setTimestamp(System.currentTimeMillis());
-                response.setCode("200");
+                response.setCode(200);
                 response.setMessage("");
                 response.setResult(otherUser);
                 return ResponseEntity.status(HttpStatus.OK).body(response);
             }else {
                 otherUser.setLogin(true);
                 response.setTimestamp(System.currentTimeMillis());
-                response.setCode("401");
+                response.setCode(401);
                 response.setMessage("账户或密码错误");
                 response.setResult(otherUser);
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
@@ -75,14 +75,14 @@ public class AuthController {
                 session.setAttribute(token, otherUser);
 
                 response.setTimestamp(System.currentTimeMillis());
-                response.setCode("200");
+                response.setCode(200);
                 response.setMessage("");
                 response.setResult(otherUser);
                 return ResponseEntity.status(HttpStatus.OK).body(response);
             }else {
                 otherUser.setLogin(true);
                 response.setTimestamp(System.currentTimeMillis());
-                response.setCode("401");
+                response.setCode(401);
                 response.setMessage("账户或密码错误");
                 response.setResult(otherUser);
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
@@ -94,14 +94,14 @@ public class AuthController {
                 session.setAttribute(token, otherUser);
 
                 response.setTimestamp(System.currentTimeMillis());
-                response.setCode("200");
+                response.setCode(200);
                 response.setMessage("");
                 response.setResult(otherUser);
                 return ResponseEntity.status(HttpStatus.OK).body(response);
             }else {
                 otherUser.setLogin(true);
                 response.setTimestamp(System.currentTimeMillis());
-                response.setCode("401");
+                response.setCode(401);
                 response.setMessage("验证码错误");
                 response.setResult(otherUser);
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
@@ -109,7 +109,7 @@ public class AuthController {
         }else {
             otherUser.setLogin(true);
             response.setTimestamp(System.currentTimeMillis());
-            response.setCode("401");
+            response.setCode(401);
             response.setMessage("请输入正确的用户名密码");
             response.setResult(otherUser);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
@@ -131,7 +131,7 @@ public class AuthController {
 
         Result<String> response = new Result<>();
         response.setTimestamp(System.currentTimeMillis());
-        response.setCode("0");
+        response.setCode(0);
         response.setMessage("[测试接口] 注销成功");
         response.setResult("");
         return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -145,7 +145,7 @@ public class AuthController {
 
         Result<JSONObject> response = new Result<>();
         response.setTimestamp(System.currentTimeMillis());
-        response.setCode("0");
+        response.setCode(0);
         response.setMessage("");
         response.setResult(data);
 

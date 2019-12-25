@@ -82,10 +82,14 @@ public class ActuatorRedisController {
   	        	list.add(map);
   	        	// log.info(map.toString());
   	        }
+			res.setSuccess(true);
+  	        res.setCode(CodeConstant.SUCCESS_CODE_200);
+			res.setMessage("查询成功");
   	        res.setResult(list);
-  	        res.success("查询成功");
   		} catch (Exception e) {
-  			res.error500("查询失败"+e.getMessage());
+  			res.setSuccess(false);
+  			res.setCode(CodeConstant.INTERNAL_SERVER_ERROR_500);
+  			res.setMessage("查询失败"+e.getMessage());
   		}
   		return res;
   	}

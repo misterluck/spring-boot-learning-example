@@ -1,15 +1,12 @@
 package org.example.antdvue.modules.example.mapper;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
-import org.example.antdvue.modules.example.entity.Example;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.example.antdvue.modules.example.entity.Example;
 
 /**
- * @Description: 测试代码生成
- * @Author: jeecg-boot
- * @Date:   2019-12-09
+ * @Description: 测试单表
+ * @Author:
+ * @Date:   2019-12-25
  * @Version: V1.0
  */
 public interface ExampleMapper extends BaseMapper<Example> {

@@ -4,10 +4,14 @@ import org.example.common.constant.CodeConstant;
 
 import java.io.Serializable;
 
+/**
+ * 接口返回对象
+ * @param <T>
+ */
 public class Result<T> implements Serializable {
     private boolean success = true;
     private long timestamp;
-    private String code;
+    private long code;
     private String message;
     private T result;
 
@@ -30,11 +34,11 @@ public class Result<T> implements Serializable {
         this.timestamp = timestamp;
     }
 
-    public String getCode() {
+    public long getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(long code) {
         this.code = code;
     }
 
@@ -54,12 +58,7 @@ public class Result<T> implements Serializable {
         this.result = result;
     }
 
-    public Result<T> success(String message) {
-        this.message = message;
-        this.code = CodeConstant.SUCCESS_CODE_200;
-        this.success = true;
-        return this;
-    }
+    /* 以下为静态方法掉用后直接返回通用返回对象 */
 
     public static Result<Object> ok() {
         Result<Object> r = new Result<>();
@@ -90,19 +89,12 @@ public class Result<T> implements Serializable {
         return error(CodeConstant.INTERNAL_SERVER_ERROR_500, msg);
     }
 
-    public static Result<Object> error(String code, String msg) {
+    public static Result<Object> error(long code, String msg) {
         Result<Object> r = new Result<>();
         r.setCode(code);
         r.setMessage(msg);
         r.setSuccess(false);
         return r;
-    }
-
-    public Result<T> error500(String message) {
-        this.message = message;
-        this.code = CodeConstant.INTERNAL_SERVER_ERROR_500;
-        this.success = false;
-        return this;
     }
 
     /**

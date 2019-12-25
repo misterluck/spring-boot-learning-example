@@ -11,6 +11,10 @@
 
     <artifactId>spring-boot-antdcommon</artifactId>
 
+    <properties>
+        <poi.version>3.9</poi.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -80,6 +84,7 @@
             <artifactId>java-jwt</artifactId>
             <version>3.7.0</version>
         </dependency>
+
 
     </dependencies>
 
