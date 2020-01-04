@@ -12,29 +12,9 @@
         <module>spring-boot-elasticsearch</module>
         <module>spring-boot-example</module>
         <module>spring-boot-websocket</module>
-        <module>spring-boot-antdvue</module>
-        <module>spring-boot-antdcommon</module>
+        <module>spring-boot-mybatisplus-generator</module>
+        <module>spring-boot-antd</module>
     </modules>
-
-    <!-- 引用私服 -->
-    <repositories>
-        <repository>
-            <id>aliyun</id>
-            <name>aliyun Repository</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>jeecg</id>
-            <name>jeecg Repository</name>
-            <url>http://maven.jeecg.org/nexus/content/repositories/jeecg</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 
     <properties>
         <springboot.version>2.0.5.RELEASE</springboot.version>
@@ -51,44 +31,20 @@
         <version>2.0.5.RELEASE</version>
     </parent>
 
-    <dependencies>
-        <!-- mybatis-plus -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>${mybatis-plus.version}</version>
-        </dependency>
-        <!-- druid -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>${druid.version}</version>
-        </dependency>
-
-        <!-- 代码生成器 -->
-        <!-- 如果下载失败，看这个链接http://jeecg-boot.mydoc.io/?t=345672 -->
-        <dependency>
-            <groupId>org.jeecgframework.boot</groupId>
-            <artifactId>codegenerate</artifactId>
-            <version>1.0.8</version>
-        </dependency>
-        <!-- AutoPoi Excel工具类-->
-        <dependency>
-            <groupId>org.jeecgframework</groupId>
-            <artifactId>autopoi-web</artifactId>
-            <version>1.0.4</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-codec</groupId>
-                    <artifactId>commons-codec</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-    </dependencies>
-
     <dependencyManagement>
         <dependencies>
+            <!-- mybatis-plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <!-- druid -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
             <!-- MyBatis -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
