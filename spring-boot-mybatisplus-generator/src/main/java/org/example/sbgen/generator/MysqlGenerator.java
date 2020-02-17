@@ -20,6 +20,20 @@ import java.util.List;
  */
 public class MysqlGenerator {
 
+    private static final String url = "jdbc:mysql://10.21.171.61:3306/antdvue?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC";
+    private static final String driverName = "com.mysql.jdbc.Driver";
+    private static final String username = "puaiuc";
+    private static final String password = "Ailk@2019";
+    private static final String tableName = "auth_info_admin";
+
+    private static final String packagePath = "/org/example/sbgen";
+    private static final String codePath = "/src/main/java";
+    private static final String confPath = "/src/main/resources";
+
+    private static final String author = "zhaolei";
+    private static final String packageName = "org.example.sbgen";
+
+
     /**
      * RUN THIS
      */
@@ -31,8 +45,8 @@ public class MysqlGenerator {
         GlobalConfig gc = new GlobalConfig();
         // String projectPath = System.getProperty("user.dir");
         String projectPath = (String.valueOf(Thread.currentThread().getContextClassLoader().getResource(""))).replaceAll("file:/", "").replaceAll("%20", " ").replace("target/classes/", "").trim();
-        gc.setOutputDir(projectPath + "/src/main/java");
-        gc.setAuthor("zhaolei");
+        gc.setOutputDir(projectPath + codePath);
+        gc.setAuthor(author);
         gc.setOpen(true);
         //service 命名方式
         gc.setServiceName("I%sService");
@@ -53,19 +67,21 @@ public class MysqlGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://10.21.171.61:3306/antdvue?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC");
-        dsc.setDriverName("com.mysql.jdbc.Driver");
-        dsc.setUsername("puaiuc");
-        dsc.setPassword("Ailk@2019");
+        dsc.setUrl(url);
+        dsc.setDriverName(driverName);
+        dsc.setUsername(username);
+        dsc.setPassword(password);
         mpg.setDataSource(dsc);
 
         // 包配置
         PackageConfig pc = new PackageConfig();
         //pc.setModuleName(scanner("模块名"));
-        pc.setParent("org.example.sbgen");
+        pc.setParent(packageName);
         pc.setEntity("entity");
         pc.setService("service");
         pc.setServiceImpl("service.impl");
+        pc.setMapper("mapper");
+        // pc.setXml("mapper");
         mpg.setPackageInfo(pc);
 
         // 自定义需要填充的字段
@@ -94,8 +110,29 @@ public class MysqlGenerator {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输入文件名称
-                return projectPath + "/src/main/resources/mapper/"
+                return projectPath + confPath +"/mapper/"
                         + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
+            }
+        });
+        focList.add(new FileOutConfig("/generator/vue/list.vue.ftl") {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                return projectPath + codePath
+                        + packagePath + "/vue/" + tableInfo.getEntityName() + "List" + ".vue";
+            }
+        });
+        focList.add(new FileOutConfig("/generator/vue/modules/modal.vue.ftl") {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                return projectPath + codePath
+                        + packagePath + "/vue/modal/" + tableInfo.getEntityName() + "Modal" + ".vue";
+            }
+        });
+        focList.add(new FileOutConfig("/generator/vue/modules/modal__Style#Drawer.vue.ftl") {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                return projectPath + codePath
+                        + packagePath + "/vue/modal/" + tableInfo.getEntityName() + "Modal__Style#Drawer" + ".vue";
             }
         });
 
@@ -120,7 +157,7 @@ public class MysqlGenerator {
         strategy.setRestControllerStyle(true);
         // 设置逻辑删除键
         strategy.setLogicDeleteFieldName("deleted");
-        strategy.setInclude("auth_info_admin");
+        strategy.setInclude(tableName);
         //strategy.setSuperEntityColumns("id");
         //驼峰转连字符
         strategy.setControllerMappingHyphenStyle(true);
