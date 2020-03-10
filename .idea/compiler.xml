@@ -12,6 +12,7 @@
         <module name="spring-boot-elasticsearch" />
         <module name="spring-boot-example" />
         <module name="spring-boot-mybatisplus-generator" />
+        <module name="spring-boot-redis" />
         <module name="spring-boot-websocket" />
       </profile>
     </annotationProcessing>
@@ -32,6 +33,7 @@
       <module name="spring-boot-example" options="-parameters" />
       <module name="spring-boot-learning-example" options="-parameters" />
       <module name="spring-boot-mybatisplus-generator" options="-parameters" />
+      <module name="spring-boot-redis" options="-parameters" />
       <module name="spring-boot-security" options="-parameters" />
       <module name="spring-boot-websocket" options="-parameters" />
     </option>

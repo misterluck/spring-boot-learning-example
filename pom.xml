@@ -14,6 +14,7 @@
         <module>spring-boot-websocket</module>
         <module>spring-boot-mybatisplus-generator</module>
         <module>spring-boot-antd</module>
+        <module>spring-boot-redis</module>
     </modules>
 
     <properties>
