@@ -1,7 +1,7 @@
 package org.example.sbgen.entity;
 
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author zhaolei
- * @since 2020-03-10
+ * @since 2020-03-31
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -55,7 +55,7 @@ public class AuthInfoAdmin extends Model<AuthInfoAdmin> {
     /**
      * 生日
      */
-    private LocalDateTime birthday;
+    private Date birthday;
 
     /**
      * 性别(0-默认未知,1-男,2-女)
@@ -115,7 +115,7 @@ public class AuthInfoAdmin extends Model<AuthInfoAdmin> {
     /**
      * 创建时间
      */
-    private LocalDateTime createTime;
+    private Date createTime;
 
     /**
      * 更新人
@@ -125,7 +125,7 @@ public class AuthInfoAdmin extends Model<AuthInfoAdmin> {
     /**
      * 更新时间
      */
-    private LocalDateTime updateTime;
+    private Date updateTime;
 
 
     @Override

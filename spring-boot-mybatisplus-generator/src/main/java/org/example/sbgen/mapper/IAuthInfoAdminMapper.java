@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author zhaolei
- * @since 2020-03-10
+ * @since 2020-03-31
  */
 public interface IAuthInfoAdminMapper extends BaseMapper<AuthInfoAdmin> {
 

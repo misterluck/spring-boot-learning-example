@@ -16,6 +16,7 @@
         <module>spring-boot-antd</module>
         <module>spring-boot-redis</module>
         <module>spring-boot-mybatisplus-common</module>
+        <module>spring-boot-flink</module>
     </modules>
 
     <properties>
