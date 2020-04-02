@@ -127,14 +127,14 @@ public class MysqlGenerator {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 return projectPath + codePath
-                        + packagePath + "/vue/modal/" + tableInfo.getEntityName() + "Modal" + ".vue";
+                        + packagePath + "/vue/modules/" + tableInfo.getEntityName() + "Modal" + ".vue";
             }
         });
         focList.add(new FileOutConfig("/generator/vue/modules/modal__Style#Drawer.vue.ftl") {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 return projectPath + codePath
-                        + packagePath + "/vue/modal/" + tableInfo.getEntityName() + "Modal__Style#Drawer" + ".vue";
+                        + packagePath + "/vue/modules/" + tableInfo.getEntityName() + "Modal__Style#Drawer" + ".vue";
             }
         });
 

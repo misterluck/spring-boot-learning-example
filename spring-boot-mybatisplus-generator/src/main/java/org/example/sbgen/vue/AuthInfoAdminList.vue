@@ -9,32 +9,106 @@
                 <a-input placeholder="请输入主键id" v-model="queryParam.id"></a-input>
               </a-form-item>
             </a-col>
-            <a-col :md="6" :sm="8">
-              <a-form-item label="登录账号">
-                <a-input placeholder="请输入登录账号" v-model="queryParam.username"></a-input>
-              </a-form-item>
-            </a-col>
-            <template v-if="toggleSearchStatus">
-              <a-col :md="6" :sm="8">
-                <a-form-item label="真实姓名">
-                  <a-input placeholder="请输入真实姓名" v-model="queryParam.realname"></a-input>
-                </a-form-item>
-              </a-col>
-            <a-col :md="6" :sm="8">
-              <a-form-item label="密码">
-                <a-input placeholder="请输入密码" v-model="queryParam.password"></a-input>
-              </a-form-item>
-            </a-col>
-            <a-col :md="6" :sm="8">
-              <a-form-item label="md5密码盐">
-                <a-input placeholder="请输入md5密码盐" v-model="queryParam.salt"></a-input>
-              </a-form-item>
-            </a-col>
-            <a-col :md="6" :sm="8">
-              <a-form-item label="头像">
-                <a-input placeholder="请输入头像" v-model="queryParam.avatar"></a-input>
-              </a-form-item>
-            </a-col>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="登录账号">
+              <a-input placeholder="请输入登录账号" v-model="queryParam.username"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="真实姓名">
+              <a-input placeholder="请输入真实姓名" v-model="queryParam.realname"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="密码">
+              <a-input placeholder="请输入密码" v-model="queryParam.password"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="md5密码盐">
+              <a-input placeholder="请输入md5密码盐" v-model="queryParam.salt"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="头像">
+              <a-input placeholder="请输入头像" v-model="queryParam.avatar"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="生日">
+              <a-input placeholder="请输入生日" v-model="queryParam.birthday"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="性别(0-默认未知,1-男,2-女)">
+              <a-input placeholder="请输入性别(0-默认未知,1-男,2-女)" v-model="queryParam.sex"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="电子邮件">
+              <a-input placeholder="请输入电子邮件" v-model="queryParam.email"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="电话">
+              <a-input placeholder="请输入电话" v-model="queryParam.phone"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="机构编码">
+              <a-input placeholder="请输入机构编码" v-model="queryParam.orgCode"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="性别(1-正常,2-冻结)">
+              <a-input placeholder="请输入性别(1-正常,2-冻结)" v-model="queryParam.status"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="删除状态(0-正常,1-已删除)">
+              <a-input placeholder="请输入删除状态(0-正常,1-已删除)" v-model="queryParam.delFlag"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="同步工作流引擎(1-同步,0-不同步)">
+              <a-input placeholder="请输入同步工作流引擎(1-同步,0-不同步)" v-model="queryParam.activitiSync"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="工号，唯一键">
+              <a-input placeholder="请输入工号，唯一键" v-model="queryParam.workNo"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="职务，关联职务表">
+              <a-input placeholder="请输入职务，关联职务表" v-model="queryParam.post"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="座机号">
+              <a-input placeholder="请输入座机号" v-model="queryParam.telephone"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="创建人">
+              <a-input placeholder="请输入创建人" v-model="queryParam.createBy"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="创建时间">
+              <a-input placeholder="请输入创建时间" v-model="queryParam.createTime"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="更新人">
+              <a-input placeholder="请输入更新人" v-model="queryParam.updateBy"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="更新时间">
+              <a-input placeholder="请输入更新时间" v-model="queryParam.updateTime"></a-input>
+            </a-form-item>
+          </a-col>
             </template>
 
           <a-col :md="6" :sm="8" >
@@ -240,13 +314,15 @@
           }
         ],
         url: {
-
+          list: "/authInfoAdmin/list",
+          delete: "/authInfoAdmin/delete",
+          deleteBatch: "/authInfoAdmin/deleteBatch"
         }
       }
     }
   }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+  @import '~@/assets/less/common.less';
 </style>

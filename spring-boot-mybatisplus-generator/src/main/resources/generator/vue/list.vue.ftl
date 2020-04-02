@@ -5,12 +5,12 @@
       <a-form layout="inline" @keyup.enter.native="searchQuery">
         <a-row :gutter="24">
           <#list table.fields as field>
-          <#if field.keyFlag>
-            <a-col :md="6" :sm="8">
-              <a-form-item label="${field.comment!}">
-                <a-input placeholder="请输入${field.comment!}" v-model="queryParam.${field.propertyName}"></a-input>
-              </a-form-item>
-            </a-col>
+          <#if field.keyFlag == false>
+          <a-col :md="6" :sm="8">
+            <a-form-item label="${field.comment!}">
+              <a-input placeholder="请输入${field.comment!}" v-model="queryParam.${field.propertyName}"></a-input>
+            </a-form-item>
+          </a-col>
           <#elseif field_index == 2 >
             <#if (table.fields?size gt 1) >
             <template v-if="toggleSearchStatus">
@@ -145,13 +145,15 @@
           }
         ],
         url: {
-
+          list: "/${table.entityPath}/list",
+          delete: "/${table.entityPath}/delete",
+          deleteBatch: "/${table.entityPath}/deleteBatch"
         }
       }
     }
   }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+  @import '~@/assets/less/common.less';
 </style>

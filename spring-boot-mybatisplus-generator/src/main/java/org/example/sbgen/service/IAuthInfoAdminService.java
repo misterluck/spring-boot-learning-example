@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author zhaolei
- * @since 2020-03-31
+ * @since 2020-04-02
  */
 public interface IAuthInfoAdminService extends IService<AuthInfoAdmin> {
 

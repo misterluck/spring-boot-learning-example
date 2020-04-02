@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author zhaolei
- * @since 2020-03-31
+ * @since 2020-04-02
  */
 @Service
 public class IAuthInfoAdminServiceImpl extends ServiceImpl<IAuthInfoAdminMapper, AuthInfoAdmin> implements IAuthInfoAdminService {
