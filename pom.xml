@@ -17,6 +17,7 @@
         <module>spring-boot-redis</module>
         <module>spring-boot-mybatisplus-common</module>
         <module>spring-boot-flink</module>
+        <module>spring-boot-session</module>
     </modules>
 
     <properties>
