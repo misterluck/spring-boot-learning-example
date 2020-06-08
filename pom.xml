@@ -18,6 +18,8 @@
         <module>spring-boot-mybatisplus-common</module>
         <module>spring-boot-flink</module>
         <module>spring-boot-session</module>
+        <module>spring-boot-dingtalk</module>
+        <module>spring-boot-k8s</module>
     </modules>
 
     <properties>

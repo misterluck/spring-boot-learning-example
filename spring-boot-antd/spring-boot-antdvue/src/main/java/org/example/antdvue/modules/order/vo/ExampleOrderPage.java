@@ -3,7 +3,6 @@ package org.example.antdvue.modules.order.vo;
 import java.util.List;
 import lombok.Data;
 import org.example.antdvue.modules.order.entity.ExampleOrderItem;
-import org.jeecgframework.poi.excel.annotation.ExcelCollection;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
@@ -41,8 +40,7 @@ public class ExampleOrderPage {
 	private Date orderTime;
 	/**订单描述*/
 	private String orderDesc;
-	
-	@ExcelCollection(name="例子订单明细")
+
 	private List<ExampleOrderItem> exampleOrderItemList;
 	
 }
