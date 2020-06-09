@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Profile;
  *
  */
 @Configuration
-@MapperScan(value={"org.example.antdvue.modules.**.mapper*"})
+@MapperScan(value={"org.example.antdvue.modules.**.mapper*", "com.ai.system.mapper"})
 public class MybatisPlusConfig {
 
     @Bean

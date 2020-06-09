@@ -8,8 +8,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.example.antdvue.modules.example.entity.Example;
 import org.example.antdvue.modules.example.service.IExampleService;
-import org.example.common.api.vo.Result;
-import org.example.common.system.query.QueryGenerator;
+import com.ai.common.api.vo.Result;
+import com.ai.common.system.query.QueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

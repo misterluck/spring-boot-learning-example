@@ -1,37 +1,26 @@
 package org.example.antdvue.modules.order.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.io.IOException;
-import java.net.URLDecoder;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.example.antdvue.modules.order.entity.ExampleOrder;
 import org.example.antdvue.modules.order.entity.ExampleOrderItem;
 import org.example.antdvue.modules.order.service.IExampleOrderItemService;
 import org.example.antdvue.modules.order.service.IExampleOrderService;
 import org.example.antdvue.modules.order.vo.ExampleOrderPage;
-import org.example.common.api.vo.Result;
-import org.example.common.system.query.QueryGenerator;
+import com.ai.common.api.vo.Result;
+import com.ai.common.system.query.QueryGenerator;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
-import com.alibaba.fastjson.JSON;
 
- /**
+/**
  * @Description: 例子订单
  * @Author: jeecg-boot
  * @Date:   2019-12-26
