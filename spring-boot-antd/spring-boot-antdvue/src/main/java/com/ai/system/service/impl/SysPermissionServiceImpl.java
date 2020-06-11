@@ -125,7 +125,7 @@ public class SysPermissionServiceImpl extends ServiceImpl<SysPermissionMapper, S
 			//设置父节点不为叶子节点
 			this.sysPermissionMapper.setMenuLeaf(pid, 0);
 		}else {
-			sysPermission.setParentId("0");
+			sysPermission.setParentId("");
 		}
 		sysPermission.setCreateTime(new Date());
 		sysPermission.setDelFlag(0);
@@ -145,7 +145,7 @@ public class SysPermissionServiceImpl extends ServiceImpl<SysPermissionMapper, S
 			//----------------------------------------------------------------------
 			//Step1.判断是否是一级菜单，是的话清空父菜单ID
 			if(CommonConstant.MENU_TYPE_0.equals(sysPermission.getMenuType())) {
-				sysPermission.setParentId("0");
+				sysPermission.setParentId("");
 			}
 			//Step2.判断菜单下级是否有菜单，无则设置为叶子节点
 			int count = this.count(new QueryWrapper<SysPermission>().lambda().eq(SysPermission::getParentId, sysPermission.getId()));

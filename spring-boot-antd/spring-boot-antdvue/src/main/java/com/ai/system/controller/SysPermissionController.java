@@ -382,7 +382,7 @@ public class SysPermissionController {
 		for (SysPermission permission : metaList) {
 			String tempPid = permission.getParentId();
 			SysPermissionTree tree = new SysPermissionTree(permission);
-			if (temp == null && "0".equals(tempPid)) {
+			if (temp == null && "".equals(tempPid)) {
 				treeList.add(tree);
 				if (!tree.getIsLeaf()) {
 					getTreeList(treeList, metaList, tree);

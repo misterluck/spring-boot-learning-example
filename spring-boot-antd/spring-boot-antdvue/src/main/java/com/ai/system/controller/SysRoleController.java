@@ -315,7 +315,7 @@ public class SysRoleController {
 		for (SysPermission permission : metaList) {
 			String tempPid = permission.getParentId();
 			TreeModel tree = new TreeModel(permission.getId(), tempPid, permission.getName(),permission.getRuleFlag(), permission.isLeaf());
-			if(temp==null && "0".equals(tempPid)) {
+			if(temp==null && "".equals(tempPid)) {
 				treeList.add(tree);
 				if(!tree.getIsLeaf()) {
 					getTreeModelList(treeList, metaList, tree);
