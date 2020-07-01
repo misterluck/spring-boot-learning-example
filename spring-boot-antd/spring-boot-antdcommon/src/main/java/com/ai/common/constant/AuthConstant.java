@@ -1,4 +1,4 @@
-package org.example.antdvue.constant;
+package com.ai.common.constant;
 
 public class AuthConstant {
 

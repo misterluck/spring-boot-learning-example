@@ -1,6 +1,7 @@
 package com.ai.system.controller;
 
 import com.ai.common.api.vo.Result;
+import com.ai.common.constant.AuthConstant;
 import com.ai.common.constant.CommonConstant;
 import com.ai.common.system.util.JwtUtil;
 import com.ai.common.system.vo.LoginUser;
@@ -18,7 +19,6 @@ import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.example.antdvue.constant.AuthConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
