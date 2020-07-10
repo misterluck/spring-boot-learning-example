@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2020/6/9 23:06
  */
 @Configuration
-@ComponentScan(basePackages = {"com.ai.common", "com.ai.system"})
+@ComponentScan(basePackages = {"com.ai.common", "org.example.commons", "com.ai.system", "com.ai.shiro"})
 public class ApplicationConfig {
 }
 

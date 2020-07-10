@@ -50,8 +50,6 @@ public class LoginController {
         String username = sysLoginModel.getUsername();
         String password = sysLoginModel.getPassword();
 
-        System.out.println("####:"+username+"\t"+password);
-
         //1. 校验用户是否有效
         SysUser sysUser = sysUserService.getUserByName(username);
         result = sysUserService.checkUserIsEffective(sysUser);
