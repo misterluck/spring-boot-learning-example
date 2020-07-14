@@ -7,6 +7,7 @@ import com.ai.common.system.util.JwtUtil;
 import com.ai.common.system.vo.LoginUser;
 import com.ai.common.util.MD5Util;
 import com.ai.common.util.PasswordUtil;
+import com.ai.common.util.SysRedisUtil;
 import com.ai.common.util.oConvertUtils;
 import com.ai.system.entity.SysPermission;
 import com.ai.system.entity.SysUser;
@@ -38,8 +39,8 @@ public class LoginController {
     private ISysUserService sysUserService;
     @Autowired
     private ISysBaseAPI sysBaseAPI;
-    /*@Autowired
-    private RedisUtil redisUtil;*/
+    @Autowired
+    private SysRedisUtil sysRedisUtil;
     @Autowired
     private ISysPermissionService sysPermissionService;
 
@@ -69,8 +70,8 @@ public class LoginController {
         JSONObject data = new JSONObject();
         String token = JwtUtil.sign(username, sysPassword);
         // 设置token缓存有效时间
-        /*redisUtil.set(CommonConstant.PREFIX_USER_TOKEN + token, token);
-        redisUtil.expire(CommonConstant.PREFIX_USER_TOKEN + token, JwtUtil.EXPIRE_TIME * 2 / 1000);*/
+        sysRedisUtil.set(CommonConstant.PREFIX_USER_TOKEN + token, token);
+        sysRedisUtil.expire(CommonConstant.PREFIX_USER_TOKEN + token, JwtUtil.EXPIRE_TIME * 2 / 1000);
 
         data.put("token", token);
         result.setResult(data);

@@ -3,6 +3,7 @@ package com.ai.shiro.authc;
 import com.ai.common.constant.CommonConstant;
 import com.ai.common.system.util.JwtUtil;
 import com.ai.common.system.vo.LoginUser;
+import com.ai.common.util.SysRedisUtil;
 import com.ai.common.util.oConvertUtils;
 import com.ai.system.service.ISysBaseAPI;
 import com.ai.system.service.ISysUserService;
@@ -14,7 +15,6 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.example.commons.redis.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -32,7 +32,7 @@ public class AccountRealm extends AuthorizingRealm {
     private ISysBaseAPI sysBaseAPI;
     @Autowired
     @Lazy
-    private RedisUtil redisUtil;
+    private SysRedisUtil sysRedisUtil;
 
     /**
      * 必须重写此方法，不然Shiro会报错
@@ -133,14 +133,14 @@ public class AccountRealm extends AuthorizingRealm {
      * @return
      */
     public boolean jwtTokenRefresh(String token, String userName, String passWord) {
-        String cacheToken = String.valueOf(redisUtil.get(CommonConstant.PREFIX_USER_TOKEN + token));
+        String cacheToken = String.valueOf(sysRedisUtil.get(CommonConstant.PREFIX_USER_TOKEN + token));
         if (oConvertUtils.isNotEmpty(cacheToken)) {
             // 校验token有效性
             if (!JwtUtil.verify(cacheToken, userName, passWord)) {
                 String newAuthorization = JwtUtil.sign(userName, passWord);
                 // 设置超时时间
-                redisUtil.set(CommonConstant.PREFIX_USER_TOKEN + token, newAuthorization);
-                redisUtil.expire(CommonConstant.PREFIX_USER_TOKEN + token, JwtUtil.EXPIRE_TIME *2 / 1000);
+                sysRedisUtil.set(CommonConstant.PREFIX_USER_TOKEN + token, newAuthorization);
+                sysRedisUtil.expire(CommonConstant.PREFIX_USER_TOKEN + token, JwtUtil.EXPIRE_TIME *2 / 1000);
                 // log.info("——————————用户在线操作，更新token保证不掉线—————————jwtTokenRefresh——————— "+ token);
             }
             //update-begin--Author:scott  Date:20191005  for：解决每次请求，都重写redis中 token缓存问题
