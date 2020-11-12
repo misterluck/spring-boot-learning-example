@@ -16,4 +16,15 @@ public class ExampleTest {
         // BigDecimal bigDecima3 = bigDecima1.divide(bigDecima2, 2, BigDecimal.ROUND_HALF_UP);
         System.out.println(bigDecima1.divide(bigDecima2, 2, BigDecimal.ROUND_HALF_UP));
     }
+
+    @Test
+    public void test1() {
+        String str = "adfasd-fasdf.as,dfasd;fsadf";
+        String[] strArr = str.split("[\\s-;,.]");
+        for (int i=0; i<strArr.length; i++) {
+            System.out.println(strArr[i]);
+        }
+
+    }
+
 }
