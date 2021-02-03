@@ -22,6 +22,20 @@
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk16</artifactId>
+            <version>1.46</version>
+        </dependency>
+        <dependency>
+            <groupId>com.somp</groupId>
+            <artifactId>somp-server-sdk</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
