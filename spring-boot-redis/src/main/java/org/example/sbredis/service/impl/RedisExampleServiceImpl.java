@@ -13,18 +13,18 @@ import java.util.*;
 @Service
 public class RedisExampleServiceImpl implements RedisExampleService {
     @Autowired
-    private RedisTemplate<Object, Object> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
     @Override
     public void save() {
-        ValueOperations<Object, Object> valueOps = redisTemplate.opsForValue();
-        ListOperations<Object, Object> listOps = redisTemplate.opsForList();
-        SetOperations<Object, Object> setOps = redisTemplate.opsForSet();
-        ZSetOperations<Object, Object> zSetOps = redisTemplate.opsForZSet();
-        HashOperations<Object, String, Object> hashOps = redisTemplate.opsForHash();
+        ValueOperations<String, Object> valueOps = redisTemplate.opsForValue();
+        ListOperations<String, Object> listOps = redisTemplate.opsForList();
+        SetOperations<String, Object> setOps = redisTemplate.opsForSet();
+        ZSetOperations<String, Object> zSetOps = redisTemplate.opsForZSet();
+        HashOperations<String, String, Object> hashOps = redisTemplate.opsForHash();
 
         //valueOps.set("key","value");
         //valueOps.get("key");
@@ -79,7 +79,7 @@ public class RedisExampleServiceImpl implements RedisExampleService {
 
     @Override
     public void saveList() {
-        ListOperations<Object, Object> listOps = redisTemplate.opsForList();
+        ListOperations<String, Object> listOps = redisTemplate.opsForList();
         listOps.leftPush("list", "one");
         listOps.leftPush("list", "two");
         listOps.leftPush("list", "three");
@@ -100,19 +100,28 @@ public class RedisExampleServiceImpl implements RedisExampleService {
         List<Object> before = listOps.range("list", 0, -1);
         System.out.println(before.size());*/
 
-        ListOperations<Object, Object> listOps = redisTemplate.opsForList();
+        ListOperations<String, Object> listOps = redisTemplate.opsForList();
         long timestamp = 1531804832123L;
         // listOps.remove("list", 0, new User("姓名1", "12", "男", new Date(timestamp)));
     }
 
     @Override
     public void show() {
-        ValueOperations<Object, Object> valueOps = redisTemplate.opsForValue();
-        ListOperations<Object, Object> listOps = redisTemplate.opsForList();
-        SetOperations<Object, Object> setOps = redisTemplate.opsForSet();
-        ZSetOperations<Object, Object> zSetOps = redisTemplate.opsForZSet();
-        HashOperations<Object, String, Object> hashOps = redisTemplate.opsForHash();
+        ValueOperations<String, Object> valueOps = redisTemplate.opsForValue();
+        ListOperations<String, Object> listOps = redisTemplate.opsForList();
+        SetOperations<String, Object> setOps = redisTemplate.opsForSet();
+        ZSetOperations<String, Object> zSetOps = redisTemplate.opsForZSet();
+        HashOperations<String, String, Object> hashOps = redisTemplate.opsForHash();
 
+        System.out.println("ENCODING:"+valueOps.get("10_19_19_39_3306_ENCODING"));
+        System.out.println("IGNORE_CASE:"+valueOps.get("10_21_171_14_3306_IGNORE_CASE"));
+        Map<String, Object> studendMap = hashOps.entries("10_21_171_18_3306_2310_TABLE");
+        Set<String> studendKey = studendMap.keySet();
+        for (String key: studendKey) {
+            System.out.println("hashKey:"+key+" hashValue: "+studendMap.get(key));
+        }
+
+        System.out.println("#####################################");
         //获取散列的value集合
         List<Object> valueList = hashOps.values("key");
         for (Object obj : valueList) {
@@ -133,10 +142,16 @@ public class RedisExampleServiceImpl implements RedisExampleService {
 
     @Override
     public void trim() {
-        ListOperations<Object, Object> listOps = redisTemplate.opsForList();
+        ListOperations<String, Object> listOps = redisTemplate.opsForList();
         //System.out.println(listOps.size("key"));
         //listOps.trim("key", 0, 0);
         //listOps.rightPop("key");
         //listOps.leftPop("key");
     }
+
+    public byte[] serialize(Object t) {
+
+        return null;
+    }
+
 }

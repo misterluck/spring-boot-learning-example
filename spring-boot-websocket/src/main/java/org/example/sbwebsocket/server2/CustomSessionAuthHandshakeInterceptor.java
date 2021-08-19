@@ -26,7 +26,7 @@ public class CustomSessionAuthHandshakeInterceptor implements HandshakeIntercept
         if(serverHttpRequest instanceof ServletServerHttpRequest) {
             ServletServerHttpRequest servletRequest = (ServletServerHttpRequest)serverHttpRequest;
             HttpServletRequest httpServletRequest = servletRequest.getServletRequest();
-            String username = (String) httpServletRequest.getParameter("username");
+            String username = httpServletRequest.getParameter("username");
             // String ID = servletRequest.getURI().toString().split("ID=")[1];
             HttpSession session = httpServletRequest.getSession();
             if(session != null) {

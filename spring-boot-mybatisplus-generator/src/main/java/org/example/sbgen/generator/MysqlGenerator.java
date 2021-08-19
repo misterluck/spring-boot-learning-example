@@ -25,7 +25,7 @@ public class MysqlGenerator {
     private static final String driverName = "com.mysql.jdbc.Driver";
     private static final String username = "puaiuc";
     private static final String password = "Ailk@2019";
-    private static final String tableName = "auth_info_admin";
+    private static final String[] tableNames = new String[]{"auth_info_admin","auth_info_role"};
 
     private static final String packagePath = "/org/example/sbgen";
     private static final String codePath = "/src/main/java";
@@ -159,7 +159,7 @@ public class MysqlGenerator {
         strategy.setRestControllerStyle(true);
         // 设置逻辑删除键
         strategy.setLogicDeleteFieldName("deleted");
-        strategy.setInclude(tableName);
+        strategy.setInclude(tableNames);
         //strategy.setSuperEntityColumns("id");
         //驼峰转连字符
         strategy.setControllerMappingHyphenStyle(true);

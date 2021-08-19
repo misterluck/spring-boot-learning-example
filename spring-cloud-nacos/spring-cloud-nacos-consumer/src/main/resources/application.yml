@@ -1,0 +1,7 @@
+server:
+  port: 8071
+
+# 开启断路器
+feign:
+  hystrix:
+    enabled: true

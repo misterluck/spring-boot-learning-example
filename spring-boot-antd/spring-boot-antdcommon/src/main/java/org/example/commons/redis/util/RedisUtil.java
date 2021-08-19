@@ -67,7 +67,7 @@ public class RedisUtil {
      * @param time 时间(秒)
      * @return
      */
-    public boolean expire(String key, long time) {
+    public Boolean expire(String key, long time) {
         return redisTemplate.expire(key, time, TimeUnit.SECONDS);
     }
 
@@ -186,20 +186,6 @@ public class RedisUtil {
         return redisTemplate.type(key);
     }
 
-
-    /** ------------------- 通用操作 --------------------- */
-    /**
-     * 缓存指定的对象
-     *
-     * @param [key, value]
-     * @return void
-     * @author HeFengNian
-     * @date 2019/10/31 18:26
-     */
-    public void setObject(String key, Object value) {
-        redisTemplate.opsForValue().set(key, value);
-    }
-
     /** -------------------string相关操作--------------------- */
 
     /**
@@ -208,7 +194,7 @@ public class RedisUtil {
      * @param key
      * @param value
      */
-    public void set(String key, String value) {
+    public void set(String key, Object value) {
         redisTemplate.opsForValue().set(key, value);
     }
 
@@ -241,7 +227,7 @@ public class RedisUtil {
      * @param value
      * @return
      */
-    public Object getAndSet(String key, String value) {
+    public Object getAndSet(String key, Object value) {
         return redisTemplate.opsForValue().getAndSet(key, value);
     }
 
@@ -270,11 +256,11 @@ public class RedisUtil {
      * 设置ASCII码, 字符串'a'的ASCII码是97, 转为二进制是'01100001', 此方法是将二进制第offset位值变为value
      *
      * @param key
-     * @param postion 位置
+     * @param offset  位置
      * @param value   值,true为1, false为0
      * @return
      */
-    public boolean setBit(String key, long offset, boolean value) {
+    public Boolean setBit(String key, long offset, boolean value) {
         return redisTemplate.opsForValue().setBit(key, offset, value);
     }
 
@@ -298,7 +284,7 @@ public class RedisUtil {
      * @param value
      * @return 之前已经存在返回false, 不存在返回true
      */
-    public boolean setIfAbsent(String key, String value) {
+    public Boolean setIfAbsent(String key, String value) {
         return redisTemplate.opsForValue().setIfAbsent(key, value);
     }
 
@@ -338,7 +324,7 @@ public class RedisUtil {
      * @param maps
      * @return 之前已经存在返回false, 不存在返回true
      */
-    public boolean multiSetIfAbsent(Map<String, String> maps) {
+    public Boolean multiSetIfAbsent(Map<String, String> maps) {
         return redisTemplate.opsForValue().multiSetIfAbsent(maps);
     }
 
@@ -346,7 +332,7 @@ public class RedisUtil {
      * 增加(自增长), 负数则为自减
      *
      * @param key
-     * @param value
+     * @param increment
      * @return
      */
     public Long incrBy(String key, long increment) {
@@ -355,7 +341,7 @@ public class RedisUtil {
 
     /**
      * @param key
-     * @param value
+     * @param increment
      * @return
      */
     public Double incrByFloat(String key, double increment) {
@@ -382,7 +368,7 @@ public class RedisUtil {
      * @param field
      * @return
      */
-    public Object hGet(String key, String field) {
+    public Object hGet(String key, Object field) {
         return redisTemplate.opsForHash().get(key, field);
     }
 
@@ -407,11 +393,11 @@ public class RedisUtil {
         return redisTemplate.opsForHash().multiGet(key, fields);
     }
 
-    public void hPut(String key, String hashKey, Object value) {
+    public void hPut(String key, Object hashKey, Object value) {
         redisTemplate.opsForHash().put(key, hashKey, value);
     }
 
-    public void hPutAll(String key, Map<String, String> maps) {
+    public void hPutAll(String key, Map<Object, Object> maps) {
         redisTemplate.opsForHash().putAll(key, maps);
     }
 
@@ -423,7 +409,7 @@ public class RedisUtil {
      * @param value
      * @return
      */
-    public Boolean hPutIfAbsent(String key, String hashKey, String value) {
+    public Boolean hPutIfAbsent(String key, Object hashKey, Object value) {
         return redisTemplate.opsForHash().putIfAbsent(key, hashKey, value);
     }
 
@@ -445,7 +431,7 @@ public class RedisUtil {
      * @param field
      * @return
      */
-    public boolean hExists(String key, String field) {
+    public boolean hExists(String key, Object field) {
         return redisTemplate.opsForHash().hasKey(key, field);
     }
 
@@ -555,7 +541,7 @@ public class RedisUtil {
      * @param value
      * @return
      */
-    public Long lLeftPushAll(String key, String... value) {
+    public Long lLeftPushAll(String key, Object... value) {
         return redisTemplate.opsForList().leftPushAll(key, value);
     }
 
@@ -564,7 +550,7 @@ public class RedisUtil {
      * @param value
      * @return
      */
-    public Long lLeftPushAll(String key, Collection<String> value) {
+    public Long lLeftPushAll(String key, Collection<Object> value) {
         return redisTemplate.opsForList().leftPushAll(key, value);
     }
 
@@ -575,7 +561,7 @@ public class RedisUtil {
      * @param value
      * @return
      */
-    public Long lLeftPushIfPresent(String key, String value) {
+    public Long lLeftPushIfPresent(String key, Object value) {
         return redisTemplate.opsForList().leftPushIfPresent(key, value);
     }
 
@@ -587,7 +573,7 @@ public class RedisUtil {
      * @param value
      * @return
      */
-    public Long lLeftPush(String key, String pivot, String value) {
+    public Long lLeftPush(String key, Object pivot, Object value) {
         return redisTemplate.opsForList().leftPush(key, pivot, value);
     }
 
@@ -596,7 +582,7 @@ public class RedisUtil {
      * @param value
      * @return
      */
-    public Long lRightPush(String key, String value) {
+    public Long lRightPush(String key, Object value) {
         return redisTemplate.opsForList().rightPush(key, value);
     }
 
@@ -605,7 +591,7 @@ public class RedisUtil {
      * @param value
      * @return
      */
-    public Long lRightPushAll(String key, String... value) {
+    public Long lRightPushAll(String key, Object... value) {
         return redisTemplate.opsForList().rightPushAll(key, value);
     }
 
@@ -614,7 +600,7 @@ public class RedisUtil {
      * @param value
      * @return
      */
-    public Long lRightPushAll(String key, Collection<String> value) {
+    public Long lRightPushAll(String key, Collection<Object> value) {
         return redisTemplate.opsForList().rightPushAll(key, value);
     }
 
@@ -625,7 +611,7 @@ public class RedisUtil {
      * @param value
      * @return
      */
-    public Long lRightPushIfPresent(String key, String value) {
+    public Long lRightPushIfPresent(String key, Object value) {
         return redisTemplate.opsForList().rightPushIfPresent(key, value);
     }
 
@@ -637,7 +623,7 @@ public class RedisUtil {
      * @param value
      * @return
      */
-    public Long lRightPush(String key, String pivot, String value) {
+    public Long lRightPush(String key, Object pivot, Object value) {
         return redisTemplate.opsForList().rightPush(key, pivot, value);
     }
 
@@ -648,7 +634,7 @@ public class RedisUtil {
      * @param index 位置
      * @param value
      */
-    public void lSet(String key, long index, String value) {
+    public void lSet(String key, long index, Object value) {
         redisTemplate.opsForList().set(key, index, value);
     }
 
@@ -724,7 +710,8 @@ public class RedisUtil {
      * 删除集合中值等于value得元素
      *
      * @param key
-     * @param index index=0, 删除所有值等于value的元素; index>0, 从头部开始删除第一个值等于value的元素;
+     * @param index index=0, 删除所有值等于value的元素;
+     *              index>0, 从头部开始删除第一个值等于value的元素;
      *              index<0, 从尾部开始删除第一个值等于value的元素;
      * @param value
      * @return
@@ -763,7 +750,7 @@ public class RedisUtil {
      * @param values
      * @return
      */
-    public Long sAdd(String key, String... values) {
+    public Long sAdd(String key, Object... values) {
         return redisTemplate.opsForSet().add(key, values);
     }
 
@@ -796,7 +783,7 @@ public class RedisUtil {
      * @param destKey
      * @return
      */
-    public Boolean sMove(String key, String value, String destKey) {
+    public Boolean sMove(String key, Object value, String destKey) {
         return redisTemplate.opsForSet().move(key, value, destKey);
     }
 
@@ -909,8 +896,7 @@ public class RedisUtil {
      * @param destKey
      * @return
      */
-    public Long sUnionAndStore(String key, Collection<String> otherKeys,
-                               String destKey) {
+    public Long sUnionAndStore(String key, Collection<String> otherKeys, String destKey) {
         return redisTemplate.opsForSet().unionAndStore(key, otherKeys, destKey);
     }
 
@@ -945,8 +931,7 @@ public class RedisUtil {
      * @return
      */
     public Long sDifference(String key, String otherKey, String destKey) {
-        return redisTemplate.opsForSet().differenceAndStore(key, otherKey,
-                destKey);
+        return redisTemplate.opsForSet().differenceAndStore(key, otherKey, destKey);
     }
 
     /**
@@ -957,21 +942,17 @@ public class RedisUtil {
      * @param destKey
      * @return
      */
-    public Long sDifference(String key, Collection<String> otherKeys,
-                            String destKey) {
-        return redisTemplate.opsForSet().differenceAndStore(key, otherKeys,
-                destKey);
+    public Long sDifference(String key, Collection<String> otherKeys, String destKey) {
+        return redisTemplate.opsForSet().differenceAndStore(key, otherKeys, destKey);
     }
 
     /**
      * 获取集合所有元素
      *
-     * @param otherKeys
-     * @param destKey
      * @param key
      * @return
      */
-    public Set<Object> setMembers(String key) {
+    public Set<Object> getMembers(String key) {
         return redisTemplate.opsForSet().members(key);
     }
 
@@ -1026,7 +1007,7 @@ public class RedisUtil {
      * @param score
      * @return
      */
-    public Boolean zAdd(String key, String value, double score) {
+    public Boolean zAdd(String key, Object value, double score) {
         return redisTemplate.opsForZSet().add(key, value, score);
     }
 
@@ -1056,7 +1037,7 @@ public class RedisUtil {
      * @param delta
      * @return
      */
-    public Double zIncrementScore(String key, String value, double delta) {
+    public Double zIncrementScore(String key, Object value, double delta) {
         return redisTemplate.opsForZSet().incrementScore(key, value, delta);
     }
 

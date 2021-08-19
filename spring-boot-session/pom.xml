@@ -27,11 +27,6 @@
             <artifactId>spring-boot-starter-jetty</artifactId>
         </dependency>
 
-        <!-- SpringSession 依赖-->
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-core</artifactId>
-        </dependency>
         <!-- SpringSessionRedis 依赖-->
         <dependency>
             <groupId>org.springframework.session</groupId>
