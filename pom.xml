@@ -28,6 +28,7 @@
         <module>spring-cloud-nacos</module>
         <module>spring-boot-aliyun-sms</module>
         <module>spring-boot-tencent-sms</module>
+        <module>spring-boot-tio</module>
     </modules>
 
     <properties>
