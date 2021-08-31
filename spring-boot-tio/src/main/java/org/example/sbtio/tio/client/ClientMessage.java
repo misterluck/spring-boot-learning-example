@@ -1,7 +1,7 @@
-package org.example.tio.tio.client;
+package org.example.sbtio.tio.client;
 
-import org.example.tio.config.ApplicationProperties;
-import org.example.tio.tio.util.TioUtil;
+import org.example.sbtio.config.ApplicationProperties;
+import org.example.sbtio.tio.util.TioUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +39,12 @@ public class ClientMessage {
     public ClientMessage start() {
         try {
             log.info("application property is {}", properties);
-            Node serverNode = new Node(properties.getTio().getServerHost(), properties.getTio().getPort());
+            Node serverNode = new Node(properties.getClient().getServerHost(), properties.getClient().getPort());
             //断链后自动连接的，不想自动连接请设为null
             ReconnConf reconnConf = new ReconnConf();
             //一组连接共用的上下文对象
             ClientTioConfig clientTioConfig = new ClientTioConfig(tioClientHandler, aioListener, reconnConf);
-            clientTioConfig.setHeartbeatTimeout(properties.getTio().getHeartbeatTimeout());
+            clientTioConfig.setHeartbeatTimeout(properties.getClient().getHeartbeatTimeout());
 
             TioClient tioClient = new TioClient(clientTioConfig);
             clientChannelContext = tioClient.connect(serverNode);

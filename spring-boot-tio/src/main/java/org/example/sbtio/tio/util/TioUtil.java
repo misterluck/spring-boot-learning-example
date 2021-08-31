@@ -1,6 +1,6 @@
-package org.example.tio.tio.util;
+package org.example.sbtio.tio.util;
 
-import org.example.tio.tio.MessagePacket;
+import org.example.sbtio.tio.MessagePacket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tio.core.ChannelContext;

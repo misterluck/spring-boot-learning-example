@@ -1,4 +1,4 @@
-package org.example.tio.config;
+package org.example.sbtio.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -6,27 +6,32 @@ import org.springframework.context.annotation.Configuration;
 import java.io.Serializable;
 
 @Configuration
-@ConfigurationProperties("application")
+@ConfigurationProperties("application.tio")
 public class ApplicationProperties implements Serializable {
 
-    private final Tio tio = new Tio();
+    private final Tio server = new Tio();
+    private final Tio client = new Tio();
 
-    public Tio getTio() {
-        return tio;
+    public Tio getServer() {
+        return server;
+    }
+
+    public Tio getClient() {
+        return client;
     }
 
     public static class Tio implements Serializable {
-        private boolean server;
+        private boolean enabled = false;
         private Integer port;
         private Integer heartbeatTimeout;
         private String serverHost;
 
-        public boolean getServer() {
-            return server;
+        public boolean getEnabled() {
+            return this.enabled;
         }
 
-        public void setServer(boolean server) {
-            this.server = server;
+        public void setEnabled(boolean enabled) {
+            this.enabled = enabled;
         }
 
         public Integer getHeartbeatTimeout() {
@@ -43,16 +48,6 @@ public class ApplicationProperties implements Serializable {
 
         public void setPort(Integer port) {
             this.port = port;
-        }
-
-        @Override
-        public String toString() {
-            return "Tio{" +
-                    "server=" + server +
-                    ", port=" + port +
-                    ", heartbeatTimeout=" + heartbeatTimeout +
-                    ", serverHost='" + serverHost + '\'' +
-                    '}';
         }
 
         public String getServerHost() {

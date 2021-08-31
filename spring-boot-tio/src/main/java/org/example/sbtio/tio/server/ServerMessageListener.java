@@ -1,18 +1,18 @@
-package org.example.tio.tio.client;
+package org.example.sbtio.tio.server;
 
 import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.tio.client.intf.ClientAioListener;
 import org.tio.core.ChannelContext;
-import org.tio.core.Tio;
 import org.tio.core.intf.Packet;
+import org.tio.server.intf.ServerAioListener;
+
 
 @Service
-public class ClientMessageListener implements ClientAioListener {
+public class ServerMessageListener implements ServerAioListener {
 
-    private static final Logger log = LoggerFactory.getLogger(ClientMessageHandler.class);
+    private static final Logger log = LoggerFactory.getLogger(ServerMessageListener.class);
 
     /**
      * 建链后触发本方法，注：建链不一定成功，需要关注参数isConnected
@@ -25,9 +25,9 @@ public class ClientMessageListener implements ClientAioListener {
      */
     @Override
     public void onAfterConnected(ChannelContext channelContext, boolean isConnected, boolean isReconnect) throws Exception {
-
         if (isConnected) {
-            log.debug("connect ip is {}",channelContext.getClientNode().getIp());
+            log.debug("connect ip is {}", channelContext.getClientNode().getIp());
+
             JSONObject jsonObject = new JSONObject();
             log.debug("send point connect -> {}",jsonObject.toJSONString());
         }
@@ -100,8 +100,12 @@ public class ClientMessageListener implements ClientAioListener {
     @Override
     public void onBeforeClose(ChannelContext channelContext, Throwable throwable, String remark, boolean isRemove) throws Exception {
         log.warn("connect is failure ip {}",channelContext.getClientNode().getIp());
-
         JSONObject jsonObject = new JSONObject();
         log.debug("send point connect -> {}",jsonObject.toJSONString());
+    }
+
+    @Override
+    public boolean onHeartbeatTimeout(ChannelContext channelContext, Long aLong, int i) {
+        return false;
     }
 }

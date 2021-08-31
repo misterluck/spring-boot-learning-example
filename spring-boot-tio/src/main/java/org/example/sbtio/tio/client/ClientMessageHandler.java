@@ -1,8 +1,8 @@
-package org.example.tio.tio.client;
+package org.example.sbtio.tio.client;
 
 
-import org.example.tio.tio.MessagePacket;
-import org.example.tio.tio.util.TioUtil;
+import org.example.sbtio.tio.MessagePacket;
+import org.example.sbtio.tio.util.TioUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

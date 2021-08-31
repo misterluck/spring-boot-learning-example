@@ -1,7 +1,7 @@
-package org.example.tio.tio.server;
+package org.example.sbtio.tio.server;
 
-import org.example.tio.config.ApplicationProperties;
-import org.example.tio.tio.util.TioUtil;
+import org.example.sbtio.config.ApplicationProperties;
+import org.example.sbtio.tio.util.TioUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,6 @@ public class ServerMessage {
 
     private ServerTioConfig serverTioConfig;
 
-
     /**
      * 启动程序入口
      */
@@ -39,11 +38,11 @@ public class ServerMessage {
         //一组连接共用的上下文对象
         log.debug("server properties is {}", properties);
         serverTioConfig = new ServerTioConfig("redis-tio-server", aioHandler, aioListener);
-        serverTioConfig.setHeartbeatTimeout(properties.getTio().getHeartbeatTimeout());
+        serverTioConfig.setHeartbeatTimeout(properties.getServer().getHeartbeatTimeout());
         //tioServer对象
         TioServer tioServer = new TioServer(serverTioConfig);
         try {
-            tioServer.start(properties.getTio().getServerHost(), properties.getTio().getPort());
+            tioServer.start(properties.getServer().getServerHost(), properties.getServer().getPort());
         } catch (IOException e) {
             e.printStackTrace();
             log.error(e.getLocalizedMessage());
