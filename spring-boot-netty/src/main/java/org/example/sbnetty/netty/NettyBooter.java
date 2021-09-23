@@ -2,6 +2,7 @@ package org.example.sbnetty.netty;
 
 import org.example.sbnetty.netty.config.NettyProperties;
 import org.example.sbnetty.netty.server.HttpServer;
+import org.example.sbnetty.netty.server.HttpsServer;
 import org.example.sbnetty.netty.server.TcpServer;
 import org.springframework.stereotype.Component;
 
@@ -30,22 +31,31 @@ public class NettyBooter {
     private final HttpServer httpServer;
 
     /**
+     * Https服务端启动器
+     */
+    private final HttpsServer httpsServer;
+
+    /**
      * Tcp服务端启动器
      */
     private final TcpServer tcpServer;
 
-    public NettyBooter(HttpServer httpServer, TcpServer tcpServer, NettyProperties nettyProperties) {
+    public NettyBooter(HttpServer httpServer, HttpsServer httpsServer, TcpServer tcpServer, NettyProperties nettyProperties) {
         this.httpServer = httpServer;
+        this.httpsServer = httpsServer;
         this.tcpServer = tcpServer;
         this.nettyProperties = nettyProperties;
     }
 
     @PostConstruct
     private void nettyServerStart() {
-        // 根据netty配置协议，运行不同的启动器
-        if (HTTP.equals(nettyProperties.getProtocol().toLowerCase())) {
+        if (nettyProperties.getHttp().isEnabled()) {
             httpServer.start();
-        } else {
+        }
+        if (nettyProperties.getHttps().isEnabled()) {
+            httpsServer.start();
+        }
+        if (nettyProperties.getTcp().isEnabled()){
             tcpServer.start();
         }
     }

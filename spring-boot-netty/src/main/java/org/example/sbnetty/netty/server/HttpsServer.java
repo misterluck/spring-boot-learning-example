@@ -7,21 +7,21 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.example.sbnetty.netty.config.NettyProperties;
-import org.example.sbnetty.netty.initializer.HttpServerInitializer;
+import org.example.sbnetty.netty.initializer.HttpsServerInitializer;
 import org.springframework.stereotype.Component;
 
 /**
  * @author zhaol
  */
 @Component
-public class HttpServer {
+public class HttpsServer {
 
     private int port;
-    private final HttpServerInitializer httpServerInitializer;
+    private final HttpsServerInitializer httpsServerInitializer;
 
-    public HttpServer(NettyProperties nettyProperties, HttpServerInitializer httpServerInitializer) {
-        this.port = nettyProperties.getHttp().getPort();
-        this.httpServerInitializer = httpServerInitializer;
+    public HttpsServer(NettyProperties nettyProperties, HttpsServerInitializer httpsServerInitializer) {
+        this.port = nettyProperties.getHttps().getPort();
+        this.httpsServerInitializer = httpsServerInitializer;
     }
 
     /**
@@ -41,13 +41,13 @@ public class HttpServer {
                 .option(ChannelOption.SO_KEEPALIVE, true)
                 // .option(ChannelOption.TCP_NODELAY, true)
                 // 指定处理新连接数据的读写处理逻辑:每次有新连接到来，都会去执行ChannelInitializer.initChannel()，并new一大堆handler。所以如果handler中无成员变量，则可写成单例
-                .childHandler(httpServerInitializer);
+                .childHandler(httpsServerInitializer);
 
         serverBootstrap.bind(port).addListener((ChannelFutureListener) future -> {
             if (future.isSuccess()) {
-                System.out.println("http端口绑定成功 port = " + port);
+                System.out.println("https端口绑定成功 port = " + port);
             } else {
-                System.out.println("http端口绑定失败");
+                System.out.println("https端口绑定失败");
             }
         });
     }

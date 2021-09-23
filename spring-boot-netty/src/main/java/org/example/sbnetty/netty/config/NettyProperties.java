@@ -14,14 +14,14 @@ import org.springframework.stereotype.Component;
 public class NettyProperties {
 
     /**
-     * 请求协议
+     * Tcp配置
      */
-    private String protocol = "http";
+    private final Http http = new Http();
 
     /**
      * Tcp配置
      */
-    private final Http http = new Http();
+    private final Https https = new Https();
 
     /**
      * Tcp配置
@@ -34,6 +34,8 @@ public class NettyProperties {
     @Data
     public static class Http {
 
+        private boolean enabled = true;
+
         /**
          * Tcp端口
          */
@@ -42,10 +44,27 @@ public class NettyProperties {
     }
 
     /**
+     * Https配置
+     */
+    @Data
+    public static class Https {
+
+        private boolean enabled = true;
+
+        /**
+         * Tcp端口
+         */
+        private int port = 9443;
+
+    }
+
+    /**
      * Tcp配置
      */
     @Data
     public static class Tcp {
+
+        private boolean enabled = true;
 
         /**
          * Tcp端口

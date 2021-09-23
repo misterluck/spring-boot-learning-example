@@ -41,6 +41,8 @@ public class CertUtilTest {
         System.out.println("server privateKey:  " + serverKeyPair.getPrivate());
 
         KeyPair clientKeyPair = CertUtil.genearteKeyPair("EC", 256);
+        System.out.println("client publicKey:  " + clientKeyPair.getPublic());
+        System.out.println("client privateKey:  " + clientKeyPair.getPrivate());
 
         String issuerDN = "C=CN, ST=北京, L=北京, O=亚信, OU=亚信, CN=RootCA, E=example@gmail.com";
         Date notBefore = new Date();
