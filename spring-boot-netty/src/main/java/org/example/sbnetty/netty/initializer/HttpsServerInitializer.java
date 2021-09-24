@@ -46,7 +46,7 @@ public class HttpsServerInitializer extends ChannelInitializer<NioSocketChannel>
         pipeline.addLast(new HttpObjectAggregator(1024 * 1024));
         pipeline.addLast(new HttpServerExpectContinueHandler());
         // pipeline.addLast(httpServerHandler);
-        pipeline.addLast(new NettyProxyServerHandler());
+        pipeline.addLast(new NettyProxyServerHandler(SslUtil.getClientSslCtx()));
 
     }
 

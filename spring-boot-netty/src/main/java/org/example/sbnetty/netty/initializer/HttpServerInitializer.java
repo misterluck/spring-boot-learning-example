@@ -24,7 +24,7 @@ public class HttpServerInitializer extends ChannelInitializer<NioSocketChannel> 
     protected void initChannel(NioSocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
 
-        // pipeline.addLast(SslUtil.getServerSslCtx().newHandler(ch.alloc()));
+        pipeline.addLast(SslUtil.getServerSslCtx().newHandler(ch.alloc()));
         pipeline.addLast(new HttpServerCodec());
         pipeline.addLast(new HttpObjectAggregator(1024 * 1024 * 1024));
         pipeline.addLast(new HttpServerExpectContinueHandler());

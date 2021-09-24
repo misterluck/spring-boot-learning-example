@@ -2,6 +2,7 @@ package org.example.sbnetty.netty.util;
 
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
+import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
 import io.netty.handler.ssl.util.SelfSignedCertificate;
 
 import javax.net.ssl.SSLException;
@@ -16,8 +17,8 @@ public class SslUtil {
         try {
             ssc = new SelfSignedCertificate();
             serverSslCtx = SslContextBuilder.forServer(ssc.certificate(), ssc.privateKey()).build();
-            clientSslCtx = SslContextBuilder.forServer(ssc.key(), ssc.cert()).build();
-            // clientSslCtx = SslContextBuilder.forClient().build();
+            // clientSslCtx = SslContextBuilder.forServer(ssc.key(), ssc.cert()).build();
+            clientSslCtx = SslContextBuilder.forClient().trustManager(InsecureTrustManagerFactory.INSTANCE).build();
         } catch (CertificateException | SSLException e) {
             e.printStackTrace();
         }

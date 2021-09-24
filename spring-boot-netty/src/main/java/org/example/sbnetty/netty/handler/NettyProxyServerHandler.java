@@ -22,8 +22,8 @@ import java.security.cert.CertificateException;
 @Component
 public class NettyProxyServerHandler extends ChannelInboundHandlerAdapter {
 
-	private String remoteHost = "127.0.0.1";
-	private int remotePort = 9999;
+	private String remoteHost = "10.21.16.21";
+	private int remotePort = 8092;
 
 	private SslContext sslCtx = null;
 	
@@ -60,9 +60,9 @@ public class NettyProxyServerHandler extends ChannelInboundHandlerAdapter {
  						protected void initChannel(SocketChannel ch)
  								throws Exception {
  							ChannelPipeline pipeline = ch.pipeline();
-							/*if (sslCtx != null) {
+							if (sslCtx != null) {
 								pipeline.addLast(sslCtx.newHandler(ch.alloc()));
-							}*/
+							}
  							pipeline.addLast(new HttpClientCodec());
  							pipeline.addLast(new HttpObjectAggregator(1024 * 1024 * 1024));
  							pipeline.addLast(new NettyProxyClientHandler(ctx.channel()));
