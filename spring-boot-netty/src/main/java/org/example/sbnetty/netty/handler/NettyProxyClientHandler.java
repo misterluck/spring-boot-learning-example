@@ -21,10 +21,10 @@ public class NettyProxyClientHandler extends ChannelInboundHandlerAdapter {
     
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-		if (msg instanceof FullHttpResponse) {
+		/*if (msg instanceof FullHttpResponse) {
 			FullHttpResponse response = (FullHttpResponse) msg;
 			System.out.println(response.content().toString(CharsetUtil.UTF_8));
-		}
+		}*/
     	if ( inBoundChannel.isActive() ) {
     		inBoundChannel.writeAndFlush(msg);
     	} else {
