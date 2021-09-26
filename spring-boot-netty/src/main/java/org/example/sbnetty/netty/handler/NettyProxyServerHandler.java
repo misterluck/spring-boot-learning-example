@@ -50,11 +50,12 @@ public class NettyProxyServerHandler extends ChannelInboundHandlerAdapter {
 	@Override
     public void channelRead(final ChannelHandlerContext ctx, final Object msg) throws Exception {
 
-		if(outBoundChannel==null || !ctx.channel().isActive()) {
+		if(outBoundChannel==null || !outBoundChannel.isActive() || !ctx.channel().isActive()) {
         	/* 创建netty client,连接到远程地址 */
 			Bootstrap bootstrap = new Bootstrap();
         	bootstrap.group(ctx.channel().eventLoop())
         	         .channel(ctx.channel().getClass())
+					 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 1000)
         	         .handler(new ChannelInitializer<SocketChannel>(){
  						@Override
  						protected void initChannel(SocketChannel ch)
@@ -82,6 +83,7 @@ public class NettyProxyServerHandler extends ChannelInboundHandlerAdapter {
     			}
         	});
     	} else {
+			System.out.println("channel:"+outBoundChannel.isActive());
     		outBoundChannel.writeAndFlush(msg);
     	}
     }
