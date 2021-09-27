@@ -32,8 +32,8 @@ public class SDKSmsDemo {
     static final String domain = "dysmsapi.aliyuncs.com";
 
     // TODO 此处需要替换成开发者自己的AK(在阿里云访问控制台寻找)
-    static final String accessKeyId = "LTAI5tA2GnYoYdx69doHGUfx";
-    static final String accessKeySecret = "4gU7eSVEdaTmuYWyKHdGu1pm0Nuwf2";
+    static final String accessKeyId = "";
+    static final String accessKeySecret = "";
 
     public static SendSmsResponse sendSms() throws ClientException {
 

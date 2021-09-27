@@ -29,7 +29,7 @@ public class ApiSample {
 
     public static void main(String[] args_) throws Exception {
         java.util.List<String> args = java.util.Arrays.asList(args_);
-        com.aliyun.dysmsapi20170525.Client client = ApiSample.createClient("LTAI5tA2GnYoYdx69doHGUfx", "4gU7eSVEdaTmuYWyKHdGu1pm0Nuwf2");
+        com.aliyun.dysmsapi20170525.Client client = ApiSample.createClient("", "");
         SendSmsRequest sendSmsRequest = new SendSmsRequest()
                 .setPhoneNumbers("17600480344")
                 .setSignName("测试")
