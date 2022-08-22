@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>spring-boot-learning-example</artifactId>
+        <groupId>org.example</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>spring-boot-docker</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.1.1</version>
+                <configuration>
+                    <!--关联harbor配置，推送镜像时可在maven的settings.xml中配置认证信息-->
+                    <serverId>docker-registry</serverId>
+                    <!--私服仓库地址-->
+                    <registryUrl>https://10.21.171.24</registryUrl>
+                    <!--docker api地址，构建镜像是通过api调用在10.1.198.192上构建，并推送到registryUrl上-->
+                    <dockerHost>http://10.1.198.192:2375</dockerHost>
+                    <!--镜像名称-->
+                    <imageName>10.21.171.24/app/${project.artifactId}:${project.version}</imageName>
+                    <!--镜像标签-->
+                    <!--<imageTags>
+                        <imageTag>${project.version}</imageTag>
+                        <imageTag>latest</imageTag>
+                    </imageTags>-->
+                    <!--基础镜像-->
+                    <baseImage>openjdk:8u342</baseImage>
+                    <!--镜像作者-->
+                    <maintainer>zhaolei3@asiainfo-sec.com</maintainer>
+                    <!--容器里工作目录-->
+                    <workdir>/app</workdir>
+                    <!--启动容器里执行的命令-->
+                    <entryPoint>["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "${project.build.finalName}.jar"]</entryPoint>
+                    <!--是否推送镜像-->
+                    <pushImage>true</pushImage>
+                    <!--资源，类似Dockerfile里的 ADD -->
+                    <resources>
+                        <resource>
+                            <targetPath>/app</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
