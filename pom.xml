@@ -32,15 +32,57 @@
         <module>spring-boot-netty</module>
     </modules>
 
+    <!-- 打包上传开发版本(Snapshots)与发布版本(Releases) -->
+    <!--<distributionManagement>
+        <repository>
+            <id>releases</id>
+            <url>http://10.21.171.65:7391/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>http://10.21.171.65:7391/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>-->
+
+    <!-- 引用私服 -->
+    <repositories>
+        <repository>
+            <id>aliyun</id>
+            <name>aliyun-public</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>maven-public</id>
+            <name>maven-public</name>
+            <url>http://10.21.171.65:7391/repository/maven-public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <!--  snapshots默认是关闭的,需要开启  -->
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <spring-boot.version>2.3.2.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.3.RELEASE</spring-cloud-alibaba.version>
+        <dubbo.version>3.0.10</dubbo.version>
         <mybatis.generator.version>1.3.5</mybatis.generator.version>
         <mybatis.springboot.version>2.1.4</mybatis.springboot.version>
         <mybatis-plus.version>3.1.2</mybatis-plus.version>
         <pagehelper-starter.version>1.2.13</pagehelper-starter.version>
         <druid.version>1.1.17</druid.version>
-        <fastjson.version>1.2.60</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <swagger2.version>2.9.2</swagger2.version>
         <commons-lang3.version>3.7</commons-lang3.version>
         <commons-io.version>2.6</commons-io.version>
@@ -55,6 +97,14 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--Spring Boot 相关依赖-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!--Spring Cloud 相关依赖-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -70,6 +120,20 @@
                 <version>${spring-cloud-alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <!--Apache Dubbo 相关依赖-->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-bom</artifactId>
+                <version>${dubbo.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-dependencies-zookeeper</artifactId>
+                <version>${dubbo.version}</version>
+                <type>pom</type>
             </dependency>
             <!-- mybatis-plus -->
             <dependency>
@@ -148,7 +212,6 @@
                         <dependency>
                             <groupId>mysql</groupId>
                             <artifactId>mysql-connector-java</artifactId>
-                            <version>5.1.40</version>
                         </dependency>
                     </dependencies>
                 </plugin>

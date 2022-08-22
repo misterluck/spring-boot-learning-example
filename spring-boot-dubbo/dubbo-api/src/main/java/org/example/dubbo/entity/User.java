@@ -1,4 +1,4 @@
-package org.example.dubbo.api.entity;
+package org.example.dubbo.entity;
 
 import java.io.Serializable;
 

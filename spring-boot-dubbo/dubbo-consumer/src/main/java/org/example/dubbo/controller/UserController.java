@@ -1,8 +1,8 @@
-package org.example.dubbo.consumer.controller;
+package org.example.dubbo.controller;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-import org.example.dubbo.api.entity.User;
-import org.example.dubbo.api.service.UserService;
+import org.apache.dubbo.config.annotation.DubboReference;
+import org.example.dubbo.entity.User;
+import org.example.dubbo.api.UserApi;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,15 +13,15 @@ public class UserController {
 
     private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @Reference(check = false)
-    private UserService userService;
+    @DubboReference(check = false)
+    private UserApi userApi;
 
     @GetMapping(value = "/user")
     public User addUser() {
         User user = new User();
         user.setName("姓名");
         user.setNick("昵称");
-        User result = userService.saveUser(user);
+        User result = userApi.saveUser(user);
         logger.info("User info:"+result.toString());
         return result;
     }
