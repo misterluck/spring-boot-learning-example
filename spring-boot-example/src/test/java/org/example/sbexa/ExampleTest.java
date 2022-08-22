@@ -1,5 +1,7 @@
 package org.example.sbexa;
 
+import com.github.yitter.contract.IdGeneratorOptions;
+import com.github.yitter.idgen.YitIdHelper;
 import org.junit.runner.RunWith;
 import org.junit.Test;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -24,6 +26,19 @@ public class ExampleTest {
         for (int i=0; i<strArr.length; i++) {
             System.out.println(strArr[i]);
         }
+
+    }
+
+    @Test
+    public void test2() {
+        IdGeneratorOptions options = new IdGeneratorOptions();
+        options.WorkerIdBitLength = 2;
+        YitIdHelper.setIdGenerator(options);
+        System.out.println(YitIdHelper.nextId());
+        System.out.println(YitIdHelper.nextId());
+        System.out.println(YitIdHelper.nextId());
+        System.out.println(YitIdHelper.nextId());
+        System.out.println(YitIdHelper.nextId());
 
     }
 

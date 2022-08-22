@@ -17,10 +17,10 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <!-- MyBatis -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-        </dependency>
+        </dependency>-->
         <!-- FastJson -->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -47,6 +47,19 @@
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcpkix-jdk15on</artifactId>
             <version>1.68</version>
+        </dependency>
+
+        <!-- jna -->
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna</artifactId>
+            <version>5.9.0</version>
+        </dependency>
+        <!-- IdGenerator -->
+        <dependency>
+            <groupId>com.github.yitter</groupId>
+            <artifactId>yitter-idgenerator</artifactId>
+            <version>1.0.6</version>
         </dependency>
 
         <dependency>

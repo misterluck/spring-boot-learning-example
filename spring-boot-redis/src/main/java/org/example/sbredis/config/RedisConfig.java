@@ -19,7 +19,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Configuration
 public class RedisConfig {
 
-    @Bean
+    /*@Bean
     @ConfigurationProperties(prefix = "spring.redis.lettuce.pool")
     @Scope(value = "prototype")
     public GenericObjectPoolConfig redisPool(){
@@ -37,7 +37,7 @@ public class RedisConfig {
         LettuceClientConfiguration clientConfiguration = LettucePoolingClientConfiguration.builder()
                 .poolConfig(config).commandTimeout(Duration.ofMillis(config.getMaxWaitMillis())).build();
         return new LettuceConnectionFactory(defaultRConfig, clientConfiguration);
-    }
+    }*/
 
     /**
      * 更改Redis序列化

@@ -17,6 +17,30 @@
         <module>dubbo-consumer</module>
     </modules>
 
+    <!-- 引用私服 -->
+    <repositories>
+        <repository>
+            <id>aliyun</id>
+            <name>aliyun-public</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>maven-public</id>
+            <name>maven-public</name>
+            <url>http://10.21.171.65:7391/repository/maven-public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <!--  snapshots默认是关闭的,需要开启  -->
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -39,20 +63,9 @@
         </dependency>
         <!-- 添加SpringBoot Dubbo -->
         <dependency>
-            <groupId>com.alibaba.spring.boot</groupId>
+            <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
-            <version>2.0.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.github.sgroschupf</groupId>
-            <artifactId>zkclient</artifactId>
-            <version>0.1</version>
+            <version>3.0.10</version>
         </dependency>
     </dependencies>
 
