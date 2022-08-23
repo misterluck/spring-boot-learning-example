@@ -85,6 +85,17 @@
                         </resource>
                     </resources>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>docker-exec</id>
+                        <!--绑定mvn install阶段，它执行完就会执行docker build和docker push-->
+                        <phase>install</phase>
+                        <goals>
+                            <goal>build</goal>
+                            <!--<goal>push</goal>-->
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
         </plugins>

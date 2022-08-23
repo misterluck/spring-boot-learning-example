@@ -13,7 +13,7 @@ public class TestController {
     @RequestMapping(value = "/test")
     public String test(String info) {
         info = info == null ? "123木头人" : info;
-        return "{'code': '200', 'message': '"+info+"', 'data': '返回数据'}";
+        return "{'code': '200', 'message': '"+info+"', 'data': '数据'}";
     }
 
 }

@@ -15,7 +15,7 @@ public class UserApiImpl implements UserApi {
     @Override
     public User saveUser(User user) {
         logger.info("User info:"+user.toString());
-        user.setSex("男");
+        user.setSex("女");
         return user;
     }
 }
