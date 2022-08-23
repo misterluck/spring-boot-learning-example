@@ -16,5 +16,35 @@
         <module>spring-cloud-nacos-consumer</module>
     </modules>
 
+    <!-- 引用私服 -->
+    <repositories>
+        <repository>
+            <id>aliyun</id>
+            <name>aliyun-public</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>maven-public</id>
+            <name>maven-public</name>
+            <url>http://10.21.171.65:7391/repository/maven-public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <!--  snapshots默认是关闭的,需要开启  -->
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
 
 </project>
