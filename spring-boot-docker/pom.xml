@@ -75,7 +75,7 @@
                     <!--启动容器里执行的命令-->
                     <entryPoint>["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "${project.build.finalName}.jar"]</entryPoint>
                     <!--是否推送镜像-->
-                    <pushImage>true</pushImage>
+                    <!--<pushImage>true</pushImage>-->
                     <!--资源，类似Dockerfile里的 ADD -->
                     <resources>
                         <resource>
@@ -91,8 +91,9 @@
                         <!--绑定mvn install阶段，它执行完就会执行docker build和docker push-->
                         <phase>install</phase>
                         <goals>
+                            <goal>removeImage</goal>
                             <goal>build</goal>
-                            <!--<goal>push</goal>-->
+                            <goal>push</goal>
                         </goals>
                     </execution>
                 </executions>

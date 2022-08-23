@@ -90,6 +90,79 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.40.2</version>
+                <configuration>
+                    <!--Docker 远程管理地址-->
+                    <dockerHost>tcp://10.1.198.192:2375</dockerHost>
+                    <!--Docker 推送镜像仓库地址-->
+                    <pushRegistry>https://10.21.171.24</pushRegistry>
+                    <!--认证配置,用于私有registry认证-->
+                    <authConfig>
+                        <push>
+                            <username>admin</username>
+                            <password>Harbor12345</password>
+                        </push>
+                    </authConfig>
+                    <images>
+                        <image>
+                            <!--由于推送到私有镜像仓库，镜像名需要添加仓库地址-->
+                            <name>10.21.171.24/app/${project.artifactId}:${project.version}</name>
+                            <!--定义镜像构建行为-->
+                            <build>
+                                <!--定义基础镜像-->
+                                <from>openjdk:8u342</from>
+                                <!--定义维护者-->
+                                <maintainer>zhaolei3@asiainfo-sec.com</maintainer>
+                                <args>
+                                    <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                                </args>
+                                <!--<assemblies>
+                                    <assembly>
+                                        <name>deps-release</name>
+                                        <descriptorRef>release-dependencies</descriptorRef>
+                                        <targetDir>/app/lib</targetDir>
+                                    </assembly>
+                                    <assembly>
+                                        <name>deps-snapshot</name>
+                                        <descriptorRef>snapshot-dependencies</descriptorRef>
+                                        <targetDir>/app/lib</targetDir>
+                                    </assembly>
+                                    <assembly>
+                                        <descriptorRef>artifact</descriptorRef>
+                                        <targetDir>/app</targetDir>
+                                    </assembly>
+                                </assemblies>-->
+                                <!--定义哪些文件拷贝到容器中-->
+                                <assembly>
+                                    <!--定义拷贝到容器的目录-->
+                                    <targetDir>/app</targetDir>
+                                    <!--只拷贝生成的jar包-->
+                                    <descriptorRef>artifact</descriptorRef>
+                                </assembly>
+                                <!--容器里工作目录-->
+                                <workdir>/app</workdir>
+                                <!--定义容器启动命令-->
+                                <entryPoint>["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "${project.build.finalName}.jar"]</entryPoint>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>docker-exec</id>
+                        <!--绑定mvn install阶段，它执行完就会执行docker build和docker push-->
+                        <phase>install</phase>
+                        <goals>
+                            <goal>remove</goal>
+                            <goal>build</goal>
+                            <goal>push</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
