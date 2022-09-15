@@ -22,7 +22,6 @@
         <module>spring-boot-k8s</module>
         <module>spring-boot-apollo</module>
         <module>spring-boot-dubbo</module>
-        <module>spring-boot-mybatisplus-shardingjdbc</module>
         <module>spring-boot-ca</module>
         <module>spring-boot-rocketmq</module>
         <module>spring-cloud-nacos</module>
