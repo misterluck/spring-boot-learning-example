@@ -28,7 +28,7 @@ public class ExampleController {
         return result.toJSONString();
     }
 
-    @RequestMapping(value = "/reqJson", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/reqJson", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public String reqJson(@RequestBody String reqBody) {
         System.out.println(reqBody);
         return "{'code':'200', 'info':'success'}";
