@@ -5,6 +5,6 @@
     console.log("Hello World!");
 }();
 
-function myFunction() {
-    alert("点击了按钮!")
+function login() {
+    alert("点击登录按钮!")
 }

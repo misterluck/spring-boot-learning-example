@@ -11,4 +11,9 @@ public class PageController {
         return "index";
     }
 
+    @RequestMapping(value = "/welcome")
+    public String welcome() {
+        return "welcome";
+    }
+
 }
