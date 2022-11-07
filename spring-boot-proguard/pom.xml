@@ -96,7 +96,7 @@
                         </option>
 
                         <!--此选项将保存接口中的所有原始名称（不混淆）-->
-                        <option>-keepnames interface ** { *; }</option>
+                        <!--<option>-keepnames interface ** { *; }</option>-->
                         <!--此选项将保存所有软件包中的所有原始接口文件（不进行混淆）-->
                         <!--<option>-keep interface * extends * { *; }</option>-->
                         <!--此选项将保留所有原始方法参数,controller如果参数也混淆会导致传参映射不上  -->

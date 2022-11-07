@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import org.example.proguard.entity.City;
 import org.example.proguard.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +19,12 @@ public class CityController {
     public String city() {
         List<City> list = cityService.getCityAll();
         return JSONObject.toJSONString(list);
+    }
+
+    @RequestMapping(value = "/hello")
+    public String hello(String hello) {
+        hello = StringUtils.isEmpty(hello) ? "Hello World!" : hello;
+        return hello;
     }
 
 }
