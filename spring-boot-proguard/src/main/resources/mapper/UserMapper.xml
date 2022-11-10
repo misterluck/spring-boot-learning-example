@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.proguard.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="org.example.proguard.entity.AuthInfoAdmin" >
+        <id column="admin_no" property="adminNo" jdbcType="VARCHAR" />
+        <result column="admin_login_no" property="adminLoginNo" jdbcType="VARCHAR" />
+        <result column="admin_login_pwd" property="adminLoginPwd" jdbcType="VARCHAR" />
+        <result column="admin_status" property="adminStatus" jdbcType="VARCHAR" />
+        <result column="admin_name" property="adminName" jdbcType="VARCHAR" />
+        <result column="admin_mobile" property="adminMobile" jdbcType="VARCHAR" />
+        <result column="admin_mail" property="adminMail" jdbcType="VARCHAR" />
+        <result column="org_id" property="orgId" jdbcType="VARCHAR" />
+        <result column="dept_id" property="deptId" jdbcType="VARCHAR" />
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+        <result column="is_supper" property="isSupper" jdbcType="VARCHAR" />
+        <result column="data_stamp" property="dataStamp" jdbcType="TIMESTAMP" />
+        <result column="is_time" property="isTime" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="selectAuthInfoAdminByAttribute" parameterType="org.example.proguard.entity.AuthInfoAdmin" resultMap="BaseResultMap">
+        select * from auth_info_admin where admin_status = #{adminStatus}
+    </select>
+
+</mapper>
