@@ -1,7 +1,0 @@
-server:
-  port: 8070
-
-#management:
-#  endpoint:
-#    health:
-#      show-details: always

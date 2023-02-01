@@ -74,15 +74,15 @@
                 <groupId>com.github.wvengen</groupId>
                 <artifactId>proguard-maven-plugin</artifactId>
                 <version>${proguard-maven-plugin.version}</version>
-                <executions>
+                <!--<executions>
                     <execution>
-                        <!--打包的时候开始混淆-->
+                        &lt;!&ndash;打包的时候开始混淆&ndash;&gt;
                         <phase>package</phase>
                         <goals>
                             <goal>proguard</goal>
                         </goals>
                     </execution>
-                </executions>
+                </executions>-->
 
                 <configuration>
                     <proguardVersion>${proguard.version}</proguardVersion>
