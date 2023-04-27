@@ -31,6 +31,7 @@
         <module>spring-boot-netty</module>
         <module>spring-boot-docker</module>
         <module>spring-boot-proguard</module>
+        <module>plugin</module>
     </modules>
 
     <!-- 打包上传开发版本(Snapshots)与发布版本(Releases) -->
